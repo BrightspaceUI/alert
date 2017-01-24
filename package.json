@@ -1,0 +1,10 @@
+{
+  "name": "d2l-alert",
+  "description": "Polymer-based web component for a D2L alert",
+  "private": true,
+  "scripts": {
+    "test": "test"
+  },
+  "author": "D2L Corporation",
+  "license": "Apache-2.0"
+}
