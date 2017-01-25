@@ -11,7 +11,13 @@ For further information on this and other D2L UI components, see the docs at [ui
 bower install git://github.com/Brightspace/alert.git#v0.0.1
 ```
 ## Usage
+```html
+<d2l-alert type='confirmation'>
+    This is the alert message
+</d2l-alert>
+```
 
+Type can be one of: `confirmation`, `call-to-action` (default), `error`, `warning`, or `reinforcement`.
 
 ## Running tests locally in Windows
 
