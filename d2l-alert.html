@@ -11,6 +11,7 @@
 				animation: 600ms ease drop-in;
 				display: flex;
 				flex-direction: row;
+				background: white;
 			}
 			:host.hidden {
 				display: none;
@@ -70,16 +71,26 @@
 
 			button {
 				height: 100%;
-				margin: 0;
-				padding: 0;
+				background: white;
 				border-radius: 0;
 				border: 1px solid var(--d2l-color-gypsum);
 				padding: 1.15em 1.15em 1.15em 1.43em;
-				text-align: center;
-				cursor: pointer;
 				border-left: none;
 				font: inherit;
-				color: inherit;
+			}
+
+			button:hover,
+			button:focus {
+				background: var(--d2l-color-gypsum);
+			}
+
+			button:active {
+				background: var(--d2l-color-titanius);
+			}
+
+			:host-context([dir='rtl']) button {
+				border-left: 1px solid var(--d2l-color-gypsum);
+				border-right: none;
 			}
 
 			.inner-button {
@@ -94,25 +105,20 @@
 			<div class="message-highlight"></div>
 			<content></content>
 		</div>
-		<div class="button-wrapper">
-			<template is="dom-if" if="[[buttonMessage]]">
-				<button is="d2l-button" on-tap="_fireButton">
-					<div class="inner-button">
-						[[buttonMessage]]
-					</div>
-				</button>
-			</template>
+		<div class="button-wrapper" hidden="[[!buttonMessage]]">
+			<button is="d2l-button" on-tap="_fireButton">
+				<div class="inner-button">
+					[[buttonMessage]]
+				</div>
+			</button>
 		</div>
-		<div class="button-wrapper">
-			<template is="dom-if" if="[[closeButton]]">
-				<button is="d2l-button" on-tap="_fireCloseButton">
-					<div class="inner-button">
-						<d2l-icon class="close-icon" icon="d2l-tier1:close-default"></d2l-icon>
-					</div>
-				</button>
-			</template>
+		<div class="button-wrapper" hidden="[[!closeButton]]">
+			<button is="d2l-button" on-tap="_fireCloseButton">
+				<div class="inner-button">
+					<d2l-icon class="close-icon" icon="d2l-tier1:close-default"></d2l-icon>
+				</div>
+			</button>
 		</div>
-
 	</template>
 	<script>
 		'use strict';
