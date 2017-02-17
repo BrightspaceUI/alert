@@ -1,5 +1,6 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../d2l-colors/d2l-colors.html">
+<link rel="import" href="../d2l-icons/d2l-icons.html">
 <link rel="import" href="../d2l-typography/d2l-typography-shared-styles.html">
 
 <dom-module id="d2l-alert">
@@ -8,12 +9,18 @@
 			:host {
 				@apply(--d2l-body-small-text);
 				animation: 600ms ease drop-in;
+				display: flex;
+				flex-direction: row;
+			}
+			:host.hidden {
+				display: none;
 			}
 			.message-wrapper {
 				position: relative;
 				border: 1px solid var(--d2l-color-gypsum);
 				border-radius: 3px;
-				padding: 16px 16px 16px 20px;
+				padding: 1.15em 1.15em 1.15em 1.43em;
+				flex: 1 1 0;
 			}
 			.message-highlight {
 				position: absolute;
@@ -60,11 +67,50 @@
 					opacity: 1;
 				}
 			}
+
+			button {
+				height: 100%;
+				margin: 0;
+				padding: 0;
+				border-radius: 0;
+				border: 1px solid var(--d2l-color-gypsum);
+				padding: 1.15em 1.15em 1.15em 1.43em;
+				text-align: center;
+				cursor: pointer;
+				border-left: none;
+				font: inherit;
+				color: inherit;
+			}
+
+			.inner-button {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
 		}
 		</style>
+
 		<div class="message-wrapper">
 			<div class="message-highlight"></div>
 			<content></content>
+		</div>
+		<div class="button-wrapper">
+			<template is="dom-if" if="[[buttonMessage]]">
+				<button is="d2l-button" on-tap="_fireButton">
+					<div class="inner-button">
+						[[buttonMessage]]
+					</div>
+				</button>
+			</template>
+		</div>
+		<div class="button-wrapper">
+			<template is="dom-if" if="[[closeButton]]">
+				<button is="d2l-button" on-tap="_fireCloseButton">
+					<div class="inner-button">
+						<d2l-icon class="close-icon" icon="d2l-tier1:close-default"></d2l-icon>
+					</div>
+				</button>
+			</template>
 		</div>
 
 	</template>
@@ -78,7 +124,15 @@
 					type: String,
 					value: 'call-to-action',
 					reflectToAttribute: true
-				}
+				},
+				buttonMessage: String,
+				closeButton: Boolean
+			},
+			_fireCloseButton: function() {
+				this.fire('alert-closed');
+			},
+			_fireButton: function() {
+				this.fire('alert-button-pressed');
 			}
 		});
 	</script>
