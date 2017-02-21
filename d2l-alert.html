@@ -103,15 +103,15 @@
 			<div class="message-highlight"></div>
 			<content></content>
 		</div>
-		<div class="button-wrapper" hidden="[[!buttonMessage]]">
-			<button is="d2l-button" on-tap="_fireButton">
+		<div class="button-wrapper" hidden="[[!hasButton]]">
+			<button is="d2l-button" on-tap="_fireAlertButtonPressedEvent">
 				<div class="inner-button">
 					[[buttonMessage]]
 				</div>
 			</button>
 		</div>
-		<div class="button-wrapper" hidden="[[!closeButton]]">
-			<button is="d2l-button" title="[[closeButtonTitle]]" on-tap="_fireCloseButton">
+		<div class="button-wrapper" hidden="[[!hasCloseButton]]">
+			<button is="d2l-button" title="[[closeButtonTitle]]" on-tap="_fireAlertClosedEvent">
 				<div class="inner-button">
 					<d2l-icon class="close-icon" icon="d2l-tier1:close-default"></d2l-icon>
 				</div>
@@ -129,14 +129,15 @@
 					value: 'call-to-action',
 					reflectToAttribute: true
 				},
+				hasButton: Boolean,
 				buttonMessage: String,
-				closeButton: Boolean,
+				hasCloseButton: Boolean,
 				closeButtonTitle: String
 			},
-			_fireCloseButton: function() {
+			_fireAlertClosedEvent: function() {
 				this.fire('alert-closed');
 			},
-			_fireButton: function() {
+			_fireAlertButtonPressedEvent: function() {
 				this.fire('alert-button-pressed');
 			}
 		});
