@@ -14,11 +14,27 @@
 				flex-direction: row;
 				background: white;
 			}
+			.alert-wrapper {
+				display: flex;
+    			flex: 1 1 0;
+			}
+			.alert-wrapper :first-child {
+				border-radius: 3px 0 0 3px;
+			}
+			:host-context([dir='rtl']) .alert-wrapper :first-child {
+				border-radius: 0 3px 3px 0;
+			}
+			.alert-wrapper :last-child {
+				border-radius: 0 3px 3px 0;
+			}
+			:host-context([dir='rtl']) .alert-wrapper :last-child {
+				border-radius: 3px 0 0 3px;
+			}
 			.message-wrapper {
 				position: relative;
 				border: 1px solid var(--d2l-color-gypsum);
-				border-radius: 3px;
-				padding: 1.15em 1.15em 1.15em 1.43em;
+				border-radius: 0;
+				padding: 1.15em 1.43em;
 				flex: 1 1 0;
 			}
 			.message-highlight {
@@ -72,7 +88,7 @@
 				background: white;
 				border-radius: 0;
 				border: 1px solid var(--d2l-color-gypsum);
-				padding: 1.15em 1.15em 1.15em 1.43em;
+				padding: 1.15em 1.43em;
 				border-left: none;
 				font: inherit;
 			}
@@ -99,19 +115,17 @@
 		}
 		</style>
 
-		<div class="message-wrapper">
-			<div class="message-highlight"></div>
-			<content></content>
-		</div>
-		<div class="button-wrapper" hidden="[[!hasButton]]">
-			<button is="d2l-button" on-tap="_fireAlertButtonPressedEvent">
+		<div class="alert-wrapper">
+			<div class="message-wrapper">
+				<div class="message-highlight"></div>
+				<content></content>
+			</div>
+			<button is="d2l-button" on-tap="_fireAlertButtonPressedEvent" hidden="[[!hasButton]]">
 				<div class="inner-button">
 					[[buttonMessage]]
 				</div>
 			</button>
-		</div>
-		<div class="button-wrapper" hidden="[[!hasCloseButton]]">
-			<button is="d2l-button" title="[[closeButtonTitle]]" on-tap="_fireAlertClosedEvent">
+			<button is="d2l-button" title="[[closeButtonTitle]]" on-tap="_fireAlertClosedEvent" hidden="[[!hasCloseButton]]">
 				<div class="inner-button">
 					<d2l-icon class="close-icon" icon="d2l-tier1:close-default"></d2l-icon>
 				</div>
