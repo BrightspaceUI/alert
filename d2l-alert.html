@@ -6,9 +6,9 @@
 
 <dom-module id="d2l-alert">
 	<template>
-		<style include="d2l-typography d2l-typography-shared-styles">
+		<style>
 			:host {
-				@apply(--d2l-body-small-text);
+				@apply --d2l-body-small-text;
 				animation: 600ms ease drop-in;
 				display: flex;
 				flex-direction: row;
@@ -116,6 +116,10 @@
 				justify-content: center;
 				align-items: center;
 			}
+
+			.d2l-alert-button {
+				@apply --d2l-body-compact-text;
+			}
 		}
 		</style>
 
@@ -124,12 +128,12 @@
 				<div class="message-highlight"></div>
 				<slot></slot>
 			</div>
-			<button is="d2l-button" class="d2l-typography" on-tap="_fireAlertButtonPressedEvent" hidden="[[!hasButton]]">
-				<div class="inner-button d2l-body-compact">
+			<button is="d2l-button" on-tap="_fireAlertButtonPressedEvent" hidden$="[[!hasButton]]">
+				<div class="inner-button d2l-alert-button">
 					[[buttonMessage]]
 				</div>
 			</button>
-			<button is="d2l-button" title="[[closeButtonTitle]]" on-tap="_fireAlertClosedEvent" hidden="[[!hasCloseButton]]">
+			<button is="d2l-button" title$="[[closeButtonTitle]]" on-tap="_fireAlertClosedEvent" hidden$="[[!hasCloseButton]]">
 				<div class="inner-button">
 					<d2l-icon class="close-icon" icon="d2l-tier1:close-default"></d2l-icon>
 				</div>
