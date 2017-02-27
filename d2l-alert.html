@@ -124,12 +124,12 @@
 				<div class="message-highlight"></div>
 				<slot></slot>
 			</div>
-			<button is="d2l-button" class="d2l-typography" on-tap="_fireAlertButtonPressedEvent" hidden="[[!hasButton]]">
+			<button is="d2l-button" class="d2l-typography" on-tap="_fireAlertButtonPressedEvent" hidden$="[[!hasButton]]">
 				<div class="inner-button d2l-body-compact">
 					[[buttonMessage]]
 				</div>
 			</button>
-			<button is="d2l-button" title="[[closeButtonTitle]]" on-tap="_fireAlertClosedEvent" hidden="[[!hasCloseButton]]">
+			<button is="d2l-button" title$="[[closeButtonTitle]]" on-tap="_fireAlertClosedEvent" hidden$="[[!hasCloseButton]]">
 				<div class="inner-button">
 					<d2l-icon class="close-icon" icon="d2l-tier1:close-default"></d2l-icon>
 				</div>

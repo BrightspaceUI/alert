@@ -27,6 +27,8 @@
 		<main class="max-width">
 			<h1>d2l-alert demo</h1>
 			<script>
+				'use strict';
+				
 				function showAlert(type) {
 					hideAllAlerts();
 					var alert = document.querySelector('d2l-alert[type=' + type + ']');
@@ -35,7 +37,7 @@
 
 				function hideAllAlerts() {
 					var alerts = document.getElementsByTagName('d2l-alert');
-					for (i = 0; i < alerts.length; i++) {
+					for (var i = 0; i < alerts.length; i++) {
 						alerts[i].classList.add('not-visible');
 					}
 				}
