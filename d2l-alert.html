@@ -24,10 +24,10 @@
 			:host-context([dir='rtl']) .alert-wrapper :first-child {
 				border-radius: 0 3px 3px 0;
 			}
-			.alert-wrapper :last-child {
+			.alert-wrapper :last-child:not(.message-highlight) {
 				border-radius: 0 3px 3px 0;
 			}
-			:host-context([dir='rtl']) .alert-wrapper :last-child {
+			:host-context([dir='rtl']) .alert-wrapper :last-child:not(.message-highlight) {
 				border-radius: 3px 0 0 3px;
 			}
 			.message-wrapper {
