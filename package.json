@@ -3,18 +3,19 @@
   "description": "Polymer-based web component for a D2L alert",
   "private": true,
   "scripts": {
-    "test": "npm run test:lint:js && npm run test:lint:wc && wct",
-    "test:lint:js": "eslint --ext .js,.html .",
-    "test:lint:wc": "polylint --no-recursion --input *.html",
-    "test:no-lint": "wct -p"
+    "postinstall": "bower install",
+    "test": "npm run test:lint:js && npm run test:lint:wc",
+    "test:lint:js": "eslint *.html",
+    "test:lint:wc": "polymer lint -i *.html",
+    "test:unit:local": "polymer test --skip-plugin sauce"
   },
   "author": "D2L Corporation",
   "license": "Apache-2.0",
   "devDependencies": {
+    "bower": "^1.7.7",
     "eslint": "^3.14.0",
     "eslint-config-brightspace": "^0.2.4",
     "eslint-plugin-html": "^1.7.0",
-    "polylint": "^2.10.1",
-    "web-component-tester": "^5.0.0"
+    "polymer-cli": "^0.16.0"
   }
 }
