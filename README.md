@@ -36,7 +36,7 @@ Alerts can be defined using `d2l-alert`.
 </d2l-alert>
 ```
 
-* `type` - required to announce menu text with screen-readers
+* `type` - call-to-action(default), confirmation, error, warning, or reinforcement
 
 ### Usage in Production
 
