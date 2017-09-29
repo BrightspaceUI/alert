@@ -18,9 +18,6 @@
 			.flex > d2l-alert {
 				flex: 1 1 auto;
 			}
-			.not-visible {
-				display: none;
-			}
 		</style>
 	</head>
 	<body unresolved class="d2l-typography">
@@ -32,31 +29,38 @@
 				function showAlert(type) {
 					hideAllAlerts();
 					var alert = document.querySelector('d2l-alert[type=' + type + ']');
-					alert.classList.remove('not-visible');
+					alert.removeAttribute('hidden');
 				}
 
 				function hideAllAlerts() {
 					var alerts = document.getElementsByTagName('d2l-alert');
 					for (var i = 0; i < alerts.length; i++) {
-						alerts[i].classList.add('not-visible');
+						alerts[i].setAttribute('hidden', 'hidden');
 					}
 				}
+
+				document.addEventListener('d2l-alert-closed', function(e) {
+					console.log('alert closed');
+				});
+
+				document.addEventListener('d2l-alert-button-pressed', function() {
+					console.log('alert button pressed');
+				});
+
 			</script>
 
 			<div class="buttons">
 				<button onclick="showAlert('call-to-action')">Show call-to-action</button>
-				<button onclick="showAlert('confirmation')">Show confirmation</button>
+				<button onclick="showAlert('success')">Show success</button>
 				<button onclick="showAlert('error')">Show error</button>
-				<button onclick="showAlert('reinforcement')">Show reinforcement</button>
 				<button onclick="showAlert('warning')">Show warning</button>
 			</div>
 
 			<div class="flex">
 				<d2l-alert type="call-to-action">This is a d2l-alert with type="call-to-action". Call-to-action is the default when no type is declared.</d2l-alert>
-				<d2l-alert type="confirmation" class="not-visible">This is a d2l-alert with type="confirmation".</d2l-alert>
-				<d2l-alert type="error" class="not-visible">This is a d2l-alert with type="error".</d2l-alert>
-				<d2l-alert type="reinforcement" class="not-visible">This is a d2l-alert with type="reinforcement".</d2l-alert>
-				<d2l-alert type="warning" class="not-visible">This is a d2l-alert with type="warning".</d2l-alert>
+				<d2l-alert type="success" hidden>This is a d2l-alert with type="success".</d2l-alert>
+				<d2l-alert type="error" hidden>This is a d2l-alert with type="error".</d2l-alert>
+				<d2l-alert type="warning" hidden>This is a d2l-alert with type="warning".</d2l-alert>
 			</div>
 
 

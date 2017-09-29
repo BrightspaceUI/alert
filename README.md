@@ -31,12 +31,28 @@ Alerts can be defined using `d2l-alert`.
 ```html
 <link rel="import" href="../d2l-alert/d2l-alert.html">
 
-<d2l-alert type='confirmation'>
+<d2l-alert type='call-to-action'>
+    This is the alert message
+</d2l-alert>
+
+<d2l-alert type='call-to-action' button-text='Yes, use the cool new UI!' has-close-button>
     This is the alert message
 </d2l-alert>
 ```
 
-* `type` - call-to-action(default), confirmation, error, warning, or reinforcement
+* `type` - required to style the alert; values: call-to-action, success, error, warning
+* `button-text` - optionally specify text for a custom button
+* `has-close-button` - optionally show a close button for dismissing the alert
+
+```javascript
+alert.addEventListener('d2l-alert-button-pressed', function() {
+	console.log('alert custom button pressed!');
+});
+
+alert.addEventListener('d2l-alert-closed', function() {
+	console.log('alert was dismissed/closed');
+});
+```
 
 ### Usage in Production
 
