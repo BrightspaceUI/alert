@@ -40,7 +40,7 @@ Alerts can be defined using `d2l-alert`.
 </d2l-alert>
 ```
 
-* `type` - required to style the alert; values: call-to-action, confirmation, error, warning, or reinforcement
+* `type` - required to style the alert; values: call-to-action, confirmation, error, warning
 * `button-text` - optionally specify text for a custom button
 * `has-close-button` - optionally show a close button for dismissing the alert
 
