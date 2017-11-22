@@ -5,7 +5,35 @@
 
 [Polymer](https://www.polymer-project.org)-based web component for D2L alerts.
 
-![screenshot of text input component](/alert.gif?raw=true)
+<!---
+```
+<custom-element-demo>
+  <template>
+    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../d2l-typography/d2l-typography.html">
+    <link rel="import" href="d2l-alert.html">
+    <custom-style include="d2l-typography">
+      <style is="custom-style" include="d2l-typography"></style>
+    </custom-style>
+    <style>
+      html {
+        font-size: 20px;
+      }
+    </style>
+    <next-code-block></next-code-block>
+  </template>
+</custom-element-demo>
+```
+-->
+```html
+<div class="d2l-typography">
+	<d2l-alert type="call-to-action" button-text="Do it!">
+		A call to action.
+	</d2l-alert>
+</div>
+```
+
+![screenshot of alert component](/alert.gif?raw=true)
 
 For further information on this and other Brightspace UI components, see the docs at [ui.developers.brightspace.com](http://ui.developers.brightspace.com/).
 
