@@ -20,17 +20,17 @@
         font-size: 20px;
       }
     </style>
-    <next-code-block></next-code-block>
+    <div class="d2l-typography">
+      <next-code-block></next-code-block>
+    </div>
   </template>
 </custom-element-demo>
 ```
 -->
 ```html
-<div class="d2l-typography">
-	<d2l-alert type="call-to-action" button-text="Do it!">
+<d2l-alert type="call-to-action" button-text="Do it!">
 		A call to action.
-	</d2l-alert>
-</div>
+</d2l-alert>
 ```
 
 ![screenshot of alert component](/alert.gif?raw=true)
