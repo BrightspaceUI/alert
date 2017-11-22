@@ -20,9 +20,7 @@
         font-size: 20px;
       }
     </style>
-    <div class="d2l-typography">
-      <next-code-block></next-code-block>
-    </div>
+    <next-code-block class="d2l-typography"></next-code-block>
   </template>
 </custom-element-demo>
 ```
