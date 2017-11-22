@@ -34,12 +34,10 @@
 ```
 -->
 ```html
-<d2l-alert type="call-to-action" button-text="Do it!">
-		A call to action.
+<d2l-alert type="warning">
+		A warning message.
 </d2l-alert>
 ```
-
-![screenshot of alert component](/alert.gif?raw=true)
 
 For further information on this and other Brightspace UI components, see the docs at [ui.developers.brightspace.com](http://ui.developers.brightspace.com/).
 
