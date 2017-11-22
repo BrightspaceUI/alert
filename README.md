@@ -19,8 +19,16 @@
       html {
         font-size: 20px;
       }
+      d2l-alert {
+        color: var(--d2l-color-ferrite);
+        font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+        letter-spacing: 0.01rem;
+        font-size: 0.95rem;
+        font-weight: 400;
+        line-height: 1.4rem;
+      }
     </style>
-    <next-code-block class="d2l-typography"></next-code-block>
+    <next-code-block></next-code-block>
   </template>
 </custom-element-demo>
 ```
