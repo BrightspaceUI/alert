@@ -7,7 +7,7 @@
     "demo",
     "test",
     ".editorconfig",
-    ".eslintrc",
+    ".eslintrc.json",
     ".gitignore",
     ".travis.yml",
     "index.html",
