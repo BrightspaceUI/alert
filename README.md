@@ -1,66 +1,132 @@
 # d2l-alert
+[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/BrightspaceUI/alert)
 [![Bower version][bower-image]][bower-url]
 [![Build status][ci-image]][ci-url]
 
-A [Polymer](https://www.polymer-project.org/1.0/)-based web component for alerts.
+[Polymer](https://www.polymer-project.org)-based web component for D2L alerts.
+
+<!---
+```
+<custom-element-demo>
+  <template>
+    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../d2l-typography/d2l-typography.html">
+    <link rel="import" href="d2l-alert.html">
+    <custom-style include="d2l-typography">
+      <style is="custom-style" include="d2l-typography"></style>
+    </custom-style>
+    <style>
+      html {
+        font-size: 20px;
+      }
+      d2l-alert {
+        color: var(--d2l-color-ferrite);
+        font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+        letter-spacing: 0.01rem;
+        font-size: 0.95rem;
+        font-weight: 400;
+        line-height: 1.4rem;
+      }
+    </style>
+    <next-code-block></next-code-block>
+  </template>
+</custom-element-demo>
+```
+-->
+```html
+<d2l-alert type="warning">
+		A warning message.
+</d2l-alert>
+```
+
+For further information on this and other Brightspace UI components, see the docs at [ui.developers.brightspace.com](http://ui.developers.brightspace.com/).
 
 ## Installation
 
 `d2l-alert` can be installed from [Bower][bower-url]:
+
 ```shell
 bower install d2l-alert
 ```
 
-Type can be one of: `confirmation`, `call-to-action` (default), `error`, `warning`, or `reinforcement`.
-
-
 ## Usage
 
-Include the [webcomponents.js](http://webcomponents.org/polyfills/) "lite" polyfill (for browsers who don't natively support web components), then import the opener and content components as needed:
+Include the [webcomponents.js](http://webcomponents.org/polyfills/) "lite" polyfill (for browsers who don't natively support web components), then import `d2l-alert.html`:
 
 ```html
 <head>
-	<script src="https://s.brightspace.com/lib/webcomponentsjs/0.7.21/webcomponents-lite.min.js"></script>
+	<script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+	<link rel="import" href="bower_components/d2l-alert/d2l-alert.html">
 </head>
 ```
 
-### Alert
-
-Alerts can be defined using `d2l-alert`.
+A `<d2l-alert>` custom element can now be used in your application by specifying one of the following types: `call-to-action`, `success`, `error`, or `warning`.
 
 ```html
-<link rel="import" href="../d2l-alert/d2l-alert.html">
+<d2l-alert type="call-to-action">A call-to-action message.</d2l-alert>
+```
 
-<d2l-alert type='call-to-action'>
-    This is the alert message
-</d2l-alert>
+A close button can optionally be rendered by specifying the `has-close-button` attribute.
 
-<d2l-alert type='call-to-action' button-text='Yes, use the cool new UI!' has-close-button>
-    This is the alert message
+```html
+<d2l-alert type="call-to-action" has-close-button>
+	A call-to-action message.
 </d2l-alert>
 ```
 
-* `type` - required to style the alert; values: call-to-action, success, error, warning
-* `button-text` - optionally specify text for a custom button
-* `has-close-button` - optionally show a close button for dismissing the alert
+```javascript
+alert.addEventListener('d2l-alert-closed', function() {
+	console.log('alert dismissed/closed');
+});
+```
+
+A custom action button can also be rendered if text is provided for the button.
+
+```html
+<d2l-alert type="call-to-action" button-text="Do it!">
+	A call-to-action message.
+</d2l-alert>
+```
 
 ```javascript
 alert.addEventListener('d2l-alert-button-pressed', function() {
-	console.log('alert custom button pressed!');
-});
-
-alert.addEventListener('d2l-alert-closed', function() {
-	console.log('alert was dismissed/closed');
+	console.log('alert custom action!');
 });
 ```
 
-### Usage in Production
+## Developing, Testing and Contributing
 
-In production, it's recommended to use a build tool like [Vulcanize](https://github.com/Polymer/vulcanize) to combine all your web components into a single import file. [More from the Polymer Docs: Optimize for Production](https://www.polymer-project.org/1.0/tools/optimize-for-production.html)...
+After cloning the repo, run `npm install` to install dependencies.
 
-## Coding styles
+If you don't have it already, install the [Polymer CLI](https://www.polymer-project.org/2.0/docs/tools/polymer-cli) globally:
 
-See the [VUI Best Practices & Style Guide](https://github.com/Brightspace/valence-ui-docs/wiki/Best-Practices-&-Style-Guide) for information on VUI naming conventions, plus information about the [EditorConfig](http://editorconfig.org) rules used in this repo.
+```shell
+npm install -g polymer-cli
+```
+
+To start a [local web server](https://www.polymer-project.org/2.0/docs/tools/polymer-cli-commands#serve) that hosts the demo page and tests:
+
+```shell
+polymer serve
+```
+
+To lint ([eslint](http://eslint.org/) and [Polymer lint](https://www.polymer-project.org/2.0/docs/tools/polymer-cli-commands#lint)):
+
+```shell
+npm run lint
+```
+
+To run unit tests locally using [Polymer test](https://www.polymer-project.org/2.0/docs/tools/polymer-cli-commands#tests):
+
+```shell
+polymer test --skip-plugin sauce
+```
+
+To lint AND run local unit tests:
+
+```shell
+npm test
+```
 
 [bower-url]: http://bower.io/search/?q=d2l-alert
 [bower-image]: https://badge.fury.io/bo/d2l-alert.svg

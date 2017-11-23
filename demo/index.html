@@ -1,69 +1,82 @@
 <!doctype html>
-<html lang="en-ca">
+<html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 		<title>d2l-alert demo</title>
 		<script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-		<link rel="import" href="../d2l-alert.html">
+		<link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+		<link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
 		<link rel="import" href="../../d2l-typography/d2l-typography.html">
-		<style is="custom-style" include="d2l-typography"></style>
+		<link rel="import" href="../d2l-alert.html">
+		<custom-style>
+			<style is="custom-style" include="demo-pages-shared-styles"></style>
+		</custom-style>
+		<custom-style include="d2l-typography">
+			<style is="custom-style" include="d2l-typography"></style>
+		</custom-style>
 		<style>
-			.buttons {
-				margin-bottom: 15px;
+			html {
+				font-size: 20px;
 			}
-			.flex {
-				display: flex;
-			}
-			.flex > d2l-alert {
-				flex: 1 1 auto;
-			}
-		</style>
+			</style>
 	</head>
 	<body unresolved class="d2l-typography">
-		<main class="max-width">
-			<h1>d2l-alert demo</h1>
-			<script>
-				'use strict';
+		<div class="vertical-section-container centered">
 
-				function showAlert(type) {
-					hideAllAlerts();
-					var alert = document.querySelector('d2l-alert[type=' + type + ']');
-					alert.removeAttribute('hidden');
-				}
+			<h3>Call to Action (default)</h3>
+			<demo-snippet>
+				<template>
+					<d2l-alert type="call-to-action">
+						A call-to-action message.
+					</d2l-alert>
+				</template>
+			</demo-snippet>
 
-				function hideAllAlerts() {
-					var alerts = document.getElementsByTagName('d2l-alert');
-					for (var i = 0; i < alerts.length; i++) {
-						alerts[i].setAttribute('hidden', 'hidden');
-					}
-				}
+			<h3>Success</h3>
+			<demo-snippet>
+				<template>
+					<d2l-alert type="success">A success message.</d2l-alert>
+				</template>
+			</demo-snippet>
 
-				document.addEventListener('d2l-alert-closed', function(e) {
-					console.log('alert closed');
-				});
+			<h3>Error</h3>
+			<demo-snippet>
+				<template>
+					<d2l-alert type="error">An error message.</d2l-alert>
+				</template>
+			</demo-snippet>
 
-				document.addEventListener('d2l-alert-button-pressed', function() {
-					console.log('alert button pressed');
-				});
+			<h3>Warning</h3>
+			<demo-snippet>
+				<template>
+					<d2l-alert type="warning">A warning message.</d2l-alert>
+				</template>
+			</demo-snippet>
 
-			</script>
+			<h3>With Close Button</h3>
+			<demo-snippet>
+				<template>
+					<d2l-alert type="call-to-action" has-close-button>
+						A message.
+					</d2l-alert>
+				</template>
+			</demo-snippet>
 
-			<div class="buttons">
-				<button onclick="showAlert('call-to-action')">Show call-to-action</button>
-				<button onclick="showAlert('success')">Show success</button>
-				<button onclick="showAlert('error')">Show error</button>
-				<button onclick="showAlert('warning')">Show warning</button>
-			</div>
+			<h3>With Action Button</h3>
+			<demo-snippet>
+				<template>
+					<d2l-alert type="call-to-action" button-text="Do it!">
+						A message.
+					</d2l-alert>
+				</template>
+			</demo-snippet>
 
-			<div class="flex">
-				<d2l-alert type="call-to-action">This is a d2l-alert with type="call-to-action". Call-to-action is the default when no type is declared.</d2l-alert>
-				<d2l-alert type="success" hidden>This is a d2l-alert with type="success".</d2l-alert>
-				<d2l-alert type="error" hidden>This is a d2l-alert with type="error".</d2l-alert>
-				<d2l-alert type="warning" hidden>This is a d2l-alert with type="warning".</d2l-alert>
-			</div>
-
-
-		</main>
+		</div>
+		<script>
+			document.body.addEventListener('d2l-alert-button-pressed', function() {
+				alert('"d2l-alert-button-pressed" was dipatched.');
+			});
+		</script>
 	</body>
 </html>

@@ -6,6 +6,9 @@
 	/** @polymerBehavior */
 	var AlertLocalizeBehavior = {
 		properties: {
+			/**
+			 * Localization resources.
+			 */
 			resources: {
 				value: function() {
 					return {
@@ -57,6 +60,7 @@
 	window.D2L = window.D2L || {};
 	window.D2L.PolymerBehaviors = window.D2L.PolymerBehaviors || {};
 	window.D2L.PolymerBehaviors.Alert = window.D2L.PolymerBehaviors.Alert || {};
+
 	/** @polymerBehavior */
 	window.D2L.PolymerBehaviors.Alert.LocalizeBehavior = [
 		D2L.PolymerBehaviors.LocalizeBehavior,
