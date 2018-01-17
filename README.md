@@ -21,8 +21,8 @@ Include the [webcomponents.js](http://webcomponents.org/polyfills/) "lite" polyf
 
 ```html
 <head>
-	<script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
-	<link rel="import" href="../d2l-alert/d2l-alert.html">
+  <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../d2l-alert/d2l-alert.html">
 </head>
 ```
 
@@ -56,7 +56,7 @@ Include the [webcomponents.js](http://webcomponents.org/polyfills/) "lite" polyf
 -->
 ```html
 <d2l-alert type="warning">
-		A warning message.
+  A warning message.
 </d2l-alert>
 ```
 
@@ -70,13 +70,13 @@ A close button can optionally be rendered by specifying the `has-close-button` a
 
 ```html
 <d2l-alert type="call-to-action" has-close-button>
-	A call-to-action message.
+  A call-to-action message.
 </d2l-alert>
 ```
 
 ```javascript
 alert.addEventListener('d2l-alert-closed', function() {
-	console.log('alert dismissed/closed');
+  console.log('alert dismissed/closed');
 });
 ```
 
@@ -84,13 +84,13 @@ A custom action button can also be rendered if text is provided for the button.
 
 ```html
 <d2l-alert type="call-to-action" button-text="Do it!">
-	A call-to-action message.
+  A call-to-action message.
 </d2l-alert>
 ```
 
 ```javascript
 alert.addEventListener('d2l-alert-button-pressed', function() {
-	console.log('alert custom action!');
+  console.log('alert custom action!');
 });
 ```
 
