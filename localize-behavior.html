@@ -3,8 +3,12 @@
 (function() {
 	'use strict';
 
-	/** @polymerBehavior */
-	var AlertLocalizeBehavior = {
+	window.D2L = window.D2L || {};
+	window.D2L.PolymerBehaviors = window.D2L.PolymerBehaviors || {};
+	window.D2L.PolymerBehaviors.Alert = window.D2L.PolymerBehaviors.Alert || {};
+
+	/** @polymerBehavior D2L.PolymerBehaviors.Alert.LocalizeBehavior */
+	D2L.PolymerBehaviors.Alert.LocalizeBehaviorImpl = {
 		properties: {
 			/**
 			 * Localization resources.
@@ -57,14 +61,10 @@
 		}
 	};
 
-	window.D2L = window.D2L || {};
-	window.D2L.PolymerBehaviors = window.D2L.PolymerBehaviors || {};
-	window.D2L.PolymerBehaviors.Alert = window.D2L.PolymerBehaviors.Alert || {};
-
-	/** @polymerBehavior */
-	window.D2L.PolymerBehaviors.Alert.LocalizeBehavior = [
+	/** @polymerBehavior D2L.PolymerBehaviors.Alert.LocalizeBehavior */
+	D2L.PolymerBehaviors.Alert.LocalizeBehavior = [
 		D2L.PolymerBehaviors.LocalizeBehavior,
-		AlertLocalizeBehavior
+		D2L.PolymerBehaviors.Alert.LocalizeBehaviorImpl
 	];
 
 })();

@@ -5,6 +5,27 @@
 
 [Polymer](https://www.polymer-project.org)-based web component for D2L alerts.
 
+For further information on this and other Brightspace UI components, see the docs at [ui.developers.brightspace.com](http://ui.developers.brightspace.com/).
+
+## Installation
+
+`d2l-alert` can be installed from [Bower][bower-url]:
+
+```shell
+bower install d2l-alert
+```
+
+## Usage
+
+Include the [webcomponents.js](http://webcomponents.org/polyfills/) "lite" polyfill (for browsers who don't natively support web components), then import `d2l-alert.html`:
+
+```html
+<head>
+  <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../d2l-alert/d2l-alert.html">
+</head>
+```
+
 <!---
 ```
 <custom-element-demo>
@@ -35,29 +56,8 @@
 -->
 ```html
 <d2l-alert type="warning">
-		A warning message.
+  A warning message.
 </d2l-alert>
-```
-
-For further information on this and other Brightspace UI components, see the docs at [ui.developers.brightspace.com](http://ui.developers.brightspace.com/).
-
-## Installation
-
-`d2l-alert` can be installed from [Bower][bower-url]:
-
-```shell
-bower install d2l-alert
-```
-
-## Usage
-
-Include the [webcomponents.js](http://webcomponents.org/polyfills/) "lite" polyfill (for browsers who don't natively support web components), then import `d2l-alert.html`:
-
-```html
-<head>
-	<script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
-	<link rel="import" href="bower_components/d2l-alert/d2l-alert.html">
-</head>
 ```
 
 A `<d2l-alert>` custom element can now be used in your application by specifying one of the following types: `call-to-action`, `success`, `error`, or `warning`.
@@ -70,13 +70,13 @@ A close button can optionally be rendered by specifying the `has-close-button` a
 
 ```html
 <d2l-alert type="call-to-action" has-close-button>
-	A call-to-action message.
+  A call-to-action message.
 </d2l-alert>
 ```
 
 ```javascript
 alert.addEventListener('d2l-alert-closed', function() {
-	console.log('alert dismissed/closed');
+  console.log('alert dismissed/closed');
 });
 ```
 
@@ -84,13 +84,13 @@ A custom action button can also be rendered if text is provided for the button.
 
 ```html
 <d2l-alert type="call-to-action" button-text="Do it!">
-	A call-to-action message.
+  A call-to-action message.
 </d2l-alert>
 ```
 
 ```javascript
 alert.addEventListener('d2l-alert-button-pressed', function() {
-	console.log('alert custom action!');
+  console.log('alert custom action!');
 });
 ```
 
