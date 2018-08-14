@@ -12,21 +12,21 @@ Polymer-based web component for a D2L toast alert
 		<style>
 			:host {
 				transform: translateY(0);
-    		transition-property: transform, opacity, visibility;
+				transition-property: transform, opacity, visibility;
 				transition-duration: 250ms;
 				transition-timing-function: ease-in;
-    		position: fixed;
+				position: fixed;
 				opacity:0.0;
-    		z-index: 2;
+				z-index: 2;
 				bottom: 0;
 				visibility: hidden;
 				border-radius: 6px;
 				box-shadow: 0 2px 12px 0 rgba(0,0,0,0.10);
 				max-width: 710px;
-    		width: 100%;
+				width: 100%;
 				margin: 0 auto;
-    		left: 0;
-    		right: 0;
+				left: 0;
+				right: 0;
 			}
 
 			:host([open]) {
@@ -61,6 +61,8 @@ Polymer-based web component for a D2L toast alert
 				/**
 				 * Type of alert to display. Valid values are 'default', 'success', 'critical', and 'warning'.
 				 * Values "call-to-action" and "error" have been deprecated.
+				 *
+				 * NOTE: Toast alerts should not be used with 'critical' or 'warning' colors.
 				 */
 				type: {
 					type: String,
@@ -81,12 +83,18 @@ Polymer-based web component for a D2L toast alert
 					type: Boolean,
 					value: false
 				},
+				/**
+				 * Whether to open the toast alert (make visible) or not.
+				 */
 				open:{
 					type: Boolean,
 					value: false,
 					reflectToAttribute: true,
 					observer: '_openChanged'
 				},
+				/**
+				 * Whether to keep the toast alert permanently on the screen (disabling the automatic closing after 2.5 seconds)
+				 */
 				permanent:{
 					type: Boolean,
 					value: false,
