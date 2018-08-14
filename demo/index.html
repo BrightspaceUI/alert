@@ -9,6 +9,7 @@
 		<link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
 		<link rel="import" href="../../d2l-typography/d2l-typography.html">
 		<link rel="import" href="../d2l-alert.html">
+		<link rel="import" href="../d2l-alert-toast.html">
 		<custom-style>
 			<style is="custom-style" include="demo-pages-shared-styles"></style>
 		</custom-style>
@@ -24,11 +25,11 @@
 	<body unresolved class="d2l-typography">
 		<div class="vertical-section-container centered">
 
-			<h3>Call to Action (default)</h3>
+			<h3>Default</h3>
 			<demo-snippet>
 				<template>
-					<d2l-alert type="call-to-action">
-						A call-to-action message.
+					<d2l-alert type="default">
+						A default message.
 					</d2l-alert>
 				</template>
 			</demo-snippet>
@@ -40,10 +41,10 @@
 				</template>
 			</demo-snippet>
 
-			<h3>Error</h3>
+			<h3>Critical</h3>
 			<demo-snippet>
 				<template>
-					<d2l-alert type="error">An error message.</d2l-alert>
+					<d2l-alert type="critical">A critical message.</d2l-alert>
 				</template>
 			</demo-snippet>
 
@@ -57,7 +58,7 @@
 			<h3>With Close Button</h3>
 			<demo-snippet>
 				<template>
-					<d2l-alert type="call-to-action" has-close-button>
+					<d2l-alert type="default" has-close-button>
 						A message.
 					</d2l-alert>
 				</template>
@@ -66,9 +67,37 @@
 			<h3>With Action Button</h3>
 			<demo-snippet>
 				<template>
-					<d2l-alert type="call-to-action" button-text="Do it!">
+					<d2l-alert type="default" button-text="Do it!">
 						A message.
 					</d2l-alert>
+				</template>
+			</demo-snippet>
+
+			<h3>With Close and Action Button</h3>
+			<demo-snippet>
+				<template>
+					<d2l-alert type="default" button-text="Do it!" has-close-button>
+						A message.
+					</d2l-alert>
+				</template>
+			</demo-snippet>
+
+			<h3>With Subtext</h3>
+			<demo-snippet>
+				<template>
+					<d2l-alert type="default" button-text="Do it!" has-close-button>
+						A message.
+						<p slot="subtext">I am subtext I am testing the wrapping capabilities of this subtext, as well as its ability to handle many many words and such stuff as that and i'm bored</p>
+					</d2l-alert>
+				</template>
+			</demo-snippet>
+
+			<h3>Toast with close</h3>
+			<demo-snippet>
+				<template>
+					<d2l-alert-toast has-close-button>
+						A message.
+					</d2l-alert-toast>
 				</template>
 			</demo-snippet>
 

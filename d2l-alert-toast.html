@@ -1,0 +1,105 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="./d2l-alert.html">
+<!--
+`d2l-alert-toast`
+Polymer-based web component for a D2L toast alert
+
+@demo demo/index.html
+-->
+
+<dom-module id="d2l-alert-toast">
+	<template>
+		<style>
+			:host {
+				transform: translateY(0);
+    		transition-property: transform, opacity, visibility;
+				transition-duration: 250ms;
+				transition-timing-function: ease-in;
+    		position: fixed;
+				opacity:0.0;
+    		z-index: 2;
+				bottom: 0;
+				visibility: hidden;
+				border-radius: 6px;
+				box-shadow: 0 2px 12px 0 rgba(0,0,0,0.10);
+				max-width: 710px;
+    		width: 100%;
+				margin: 0 auto;
+    		left: 0;
+    		right: 0;
+			}
+
+			:host([open]) {
+				transform: translateY(-10px);
+				opacity:1;
+				visibility: visible;
+			}
+
+		</style>
+		<d2l-alert type$="[[type]]" button-text$="[[buttonText]]" has-close-button$="[[hasCloseButton]]">
+			<slot></slot>
+		</d2l-alert>
+	</template>
+	<script>
+		Polymer({
+			is: 'd2l-alert-toast',
+
+			/**
+			 * Fired when the custom action button is pressed.
+			 *
+			 * @event d2l-alert-button-pressed
+			*/
+
+			/**
+			 * Fired when the alert is closed/hidden.
+			 *
+			 * @event d2l-alert-closed
+			*/
+
+			properties: {
+
+				/**
+				 * Type of alert to display. Valid values are 'default', 'success', 'critical', and 'warning'.
+				 * Values "call-to-action" and "error" have been deprecated.
+				 */
+				type: {
+					type: String,
+					value: 'default',
+					reflectToAttribute: true
+				},
+				/**
+				 * Text for a custom action button. If provided, a button will be rendered with the specified text.
+				 */
+				buttonText: {
+					type: String,
+					value: null
+				},
+				/**
+				 * Whether to render a close button, allowing the user to hide the alert.
+				 */
+				hasCloseButton: {
+					type: Boolean,
+					value: false
+				},
+				open:{
+					type: Boolean,
+					value: false,
+					reflectToAttribute: true,
+					observer: '_openChanged'
+				},
+				permanent:{
+					type: Boolean,
+					value: false,
+					observer: '_openChanged'
+				}
+			},
+
+			_openChanged: function() {
+				if(this.open && !this.permanent) {
+					const that = this;
+					setTimeout(function() {that.open = false;}.bind(that), 2500);
+				}
+			}
+		});
+	</script>
+</dom-module>
