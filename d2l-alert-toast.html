@@ -104,8 +104,8 @@ Polymer-based web component for a D2L toast alert
 			},
 
 			_changeOpen: function() {
-				if(this.open && !this.permanent) {
-					const that = this;
+				if (this.open && !this.permanent) {
+					var that = this;
 					setTimeout(function() {that.open = false;}.bind(that), 2500);
 				}
 			}
