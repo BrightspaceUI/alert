@@ -13,17 +13,17 @@ Polymer-based web component for a D2L alert
 -->
 
 <dom-module id="d2l-alert">
-	<template>
+	<template strip-whitespace>
 		<style>
 			:host {
 				animation: 600ms ease drop-in;
-				display: flex;
-				flex-direction: row;
 				background: white;
-				max-width: 710px;
-				width:100%;
 				border: 1px solid var(--d2l-color-mica);
 				border-radius: 6px;
+				display: flex;
+				flex-direction: row;
+				max-width: 710px;
+				width:100%;
 			}
 			:host([hidden]) {
 				display: none;
@@ -33,8 +33,8 @@ Polymer-based web component for a D2L alert
 				flex: 1;
 			}
 			.message-wrapper {
-				padding: 1rem 1.2rem 1rem 1.5rem;
 				flex: 1;
+				padding: 1rem 1.2rem 1rem 1.5rem;
 			}
 			:host-context([dir='rtl']) .message-wrapper {
 				padding: 1rem 1.5rem 1rem 1.2rem;
@@ -43,27 +43,27 @@ Polymer-based web component for a D2L alert
 				padding: 1rem 1.5rem 1rem 1.2rem;
 			}
 			.message-wrapper ::slotted([slot=subtext]) {
-				margin: 0.5rem 0 0 !important;
 				@apply --d2l-body-compact-text;
+				margin: 0.5rem 0 0 !important;
 			}
 			.message-highlight {
+				border-radius: 6px 0 0 6px;
+				bottom: 0;
+				left: 0;
+				margin: -1px;
 				position: relative;
 				top: 0;
-				left: 0;
-				bottom: 0;
 				width: 6px;
-				border-radius: 6px 0 0 6px;
-				margin: -1px;
 			}
 			:host-context([dir='rtl']) .message-highlight {
+				border-radius: 0 6px 6px 0;
 				left: auto;
 				right: 0;
-				border-radius: 0 6px 6px 0;
 			}
 			:host(:dir(rtl)) .message-highlight {
+				border-radius: 0 6px 6px 0;
 				left: auto;
 				right: 0;
-				border-radius: 0 6px 6px 0;
 			}
 
 			:host([type="critical"]) .message-highlight,
@@ -83,12 +83,12 @@ Polymer-based web component for a D2L alert
 
 			@keyframes drop-in {
 				from {
-					transform: translate(0,-10px);
 					opacity: 0.0;
+					transform: translate(0,-10px);
 				}
 				to {
-					transform: translate(0,0);
 					opacity: 1;
+					transform: translate(0,0);
 				}
 			}
 
