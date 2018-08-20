@@ -87,13 +87,14 @@
 				<template>
 					<d2l-alert type="default" button-text="Do it!" has-close-button>
 						A message.
-						<p slot="subtext">I am subtext I am testing the wrapping capabilities of this subtext, as well as its ability to handle many many words and such stuff as that and i'm bored</p>
+						<p slot="subtext">I am subtext. I'm here to test the wrapping capabilities of adding subtext to these alerts, as well as other styling issues. Feel free to add to me!</p>
 					</d2l-alert>
 				</template>
 			</demo-snippet>
 
 		</div>
 		<script>
+			document.body.classList.add('d2l-typography');
 			document.body.addEventListener('d2l-alert-button-pressed', function() {
 				alert('"d2l-alert-button-pressed" was dipatched.');
 			});

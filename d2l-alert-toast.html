@@ -11,9 +11,9 @@ Polymer-based web component for a D2L toast alert
 	<template strip-whitespace>
 		<style>
 			:host {
-				border-radius: 6px;
+				border-radius: 0.3rem;
 				bottom: 0;
-				box-shadow: 0 2px 12px 0 rgba(0,0,0,0.10);
+				box-shadow: 0 0.1rem 0.6rem 0 rgba(0,0,0,0.10);
 				left: 0;
 				margin: 0 auto;
 				max-width: 710px;
@@ -105,8 +105,7 @@ Polymer-based web component for a D2L toast alert
 
 			_changeOpen: function() {
 				if (this.open && !this.permanent) {
-					var that = this;
-					setTimeout(function() {that.open = false;}.bind(that), 2500);
+					setTimeout(function() {this.open = false;}.bind(this), 2500);
 				}
 			}
 		});

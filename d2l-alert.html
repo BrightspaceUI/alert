@@ -19,7 +19,7 @@ Polymer-based web component for a D2L alert
 				animation: 600ms ease drop-in;
 				background: white;
 				border: 1px solid var(--d2l-color-mica);
-				border-radius: 6px;
+				border-radius: 0.3rem;
 				display: flex;
 				flex-direction: row;
 				max-width: 710px;
@@ -35,6 +35,7 @@ Polymer-based web component for a D2L alert
 			.message-wrapper {
 				flex: 1;
 				padding: 1rem 1.2rem 1rem 1.5rem;
+				position: relative;
 			}
 			:host-context([dir='rtl']) .message-wrapper {
 				padding: 1rem 1.5rem 1rem 1.2rem;
@@ -44,24 +45,23 @@ Polymer-based web component for a D2L alert
 			}
 			.message-wrapper ::slotted([slot=subtext]) {
 				@apply --d2l-body-compact-text;
-				margin: 0.5rem 0 0 !important;
+				margin: 0.5rem 0 0;
 			}
 			.message-highlight {
-				border-radius: 6px 0 0 6px;
+				border-radius: 0.3rem 0 0 0.3rem;
 				bottom: 0;
 				left: 0;
 				margin: -1px;
-				position: relative;
 				top: 0;
-				width: 6px;
+				width: 0.3rem;
 			}
 			:host-context([dir='rtl']) .message-highlight {
-				border-radius: 0 6px 6px 0;
+				border-radius: 0 0.3rem 0.3rem 0;
 				left: auto;
 				right: 0;
 			}
 			:host(:dir(rtl)) .message-highlight {
-				border-radius: 0 6px 6px 0;
+				border-radius: 0 0.3rem 0.3rem 0;
 				left: auto;
 				right: 0;
 			}
