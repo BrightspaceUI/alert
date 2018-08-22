@@ -12,7 +12,7 @@ Polymer-based web component for a D2L toast alert
 		<style>
 			:host {
 				border-radius: 0.3rem;
-				bottom: 0;
+				bottom: 20px;
 				box-shadow: 0 0.1rem 0.6rem 0 rgba(0,0,0,0.10);
 				left: 0;
 				margin: 0 auto;
@@ -57,6 +57,10 @@ Polymer-based web component for a D2L toast alert
 			 * @event d2l-alert-closed
 			*/
 
+			listeners: {
+				'd2l-alert-closed': '_close'
+			},
+
 			properties: {
 
 				/**
@@ -82,7 +86,7 @@ Polymer-based web component for a D2L toast alert
 				 */
 				hasCloseButton: {
 					type: Boolean,
-					value: false
+					value: true
 				},
 				/**
 				 * Whether to open the toast alert (make visible) or not.
@@ -94,19 +98,29 @@ Polymer-based web component for a D2L toast alert
 					observer: '_changeOpen'
 				},
 				/**
-				 * Whether to keep the toast alert permanently on the screen (disabling the automatic closing after 2.5 seconds)
+				 * Whether to automatically close after 2.5 seconds or stay open
 				 */
-				permanent:{
+				autoclose:{
 					type: Boolean,
-					value: false,
+					value: true,
 					observer: '_changeOpen'
 				}
 			},
 
 			_changeOpen: function() {
-				if (this.open && !this.permanent) {
+
+				var alertElement = this.$$('d2l-alert');
+				if (alertElement && alertElement.hasAttribute('hidden')) {
+					alertElement.removeAttribute('hidden');
+				}
+
+				if (this.open && this.autoclose) {
 					setTimeout(function() {this.open = false;}.bind(this), 2500);
 				}
+			},
+
+			_close: function() {
+				this.open = false;
 			}
 		});
 	</script>
