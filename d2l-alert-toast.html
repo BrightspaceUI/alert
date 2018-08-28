@@ -26,10 +26,14 @@ Polymer-based web component for a D2L toast alert
 				transform: translateY(0);
 				visibility: hidden;
 				width: 100%;
-				z-index: 2;
+				z-index: 10000; /*This was based on one of the flash messages in the LMS ... if need be, adjust to be more appropriate*/
 			}
 
-			:host([open]) {
+			:host(.closed) {
+				display:none;
+			}
+
+			:host(.opened) {
 				opacity: 1;
 				transform: translateY(-10px);
 				visibility: visible;
@@ -58,7 +62,8 @@ Polymer-based web component for a D2L toast alert
 			*/
 
 			listeners: {
-				'd2l-alert-closed': '_close'
+				'd2l-alert-closed': '_close',
+				'transitionend': '_setClosedClass'
 			},
 
 			properties: {
@@ -108,19 +113,49 @@ Polymer-based web component for a D2L toast alert
 			},
 
 			_changeOpen: function() {
+				if (this.open) {
+					if (this.classList.contains('closed')) {
+						this.classList.remove('closed');
+					}
+					//add in a delay before attempting the open transition, to allow for display:none to be disabled
+					setTimeout(function() {
+						if (!this.classList.contains('opened')) {
+							this.classList.add('opened');
+						}}.bind(this), 150);
+				}
 
-				var alertElement = this.$$('d2l-alert');
-				if (alertElement && alertElement.hasAttribute('hidden')) {
-					alertElement.removeAttribute('hidden');
+				//clear the setTimeout below that will close after 2.5 seconds if you closed the toast another way, and are re-opening (you'll want a fresh 2.5seconds)
+				if (this.open && this._setTimeoutId > -1) {
+					clearTimeout(this._setTimeoutId);
+					this._setTimeoutId = -1;
 				}
 
 				if (this.open && this.autoclose) {
-					setTimeout(function() {this.open = false;}.bind(this), 2500);
+					this._setTimeoutId = setTimeout(function() {
+						this.open = false;
+						this.classList.remove('opened');
+						this._setTimeoutId = -1;
+					}.bind(this), 2500);
 				}
 			},
 
 			_close: function() {
 				this.open = false;
+				this.classList.add('closed');
+				this.classList.remove('opened');
+				//this removes the hidden attribute from the alert element, which is necessary for it to be visible again if we want to open it
+				var alertElement = this.$$('d2l-alert');
+				if (alertElement && alertElement.hasAttribute('hidden')) {
+					alertElement.removeAttribute('hidden');
+				}
+			},
+
+			//make sure that the transition has ended before setting the host class to closed, because it sets display:none and stops the transition from happening
+			//also, check for the event triggered by the end of visibility transition, as the transition will no longer be visible after this point, and so the class can be changed to closed
+			_setClosedClass: function(event) {
+				if (!this.open && event.propertyName === 'visibility') {
+					this.classList.add('closed');
+				}
 			}
 		});
 	</script>
