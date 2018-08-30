@@ -19,16 +19,16 @@
 			html {
 				font-size: 20px;
 			}
-			</style>
+		</style>
 	</head>
 	<body unresolved class="d2l-typography">
 		<div class="vertical-section-container centered">
 
-			<h3>Call to Action (default)</h3>
+			<h3>Default</h3>
 			<demo-snippet>
 				<template>
-					<d2l-alert type="call-to-action">
-						A call-to-action message.
+					<d2l-alert type="default">
+						A default message.
 					</d2l-alert>
 				</template>
 			</demo-snippet>
@@ -40,10 +40,10 @@
 				</template>
 			</demo-snippet>
 
-			<h3>Error</h3>
+			<h3>Critical</h3>
 			<demo-snippet>
 				<template>
-					<d2l-alert type="error">An error message.</d2l-alert>
+					<d2l-alert type="critical">A critical message.</d2l-alert>
 				</template>
 			</demo-snippet>
 
@@ -57,7 +57,7 @@
 			<h3>With Close Button</h3>
 			<demo-snippet>
 				<template>
-					<d2l-alert type="call-to-action" has-close-button>
+					<d2l-alert type="default" has-close-button>
 						A message.
 					</d2l-alert>
 				</template>
@@ -66,7 +66,25 @@
 			<h3>With Action Button</h3>
 			<demo-snippet>
 				<template>
-					<d2l-alert type="call-to-action" button-text="Do it!">
+					<d2l-alert type="default" button-text="Do it!">
+						A message.
+					</d2l-alert>
+				</template>
+			</demo-snippet>
+
+			<h3>With Close and Action Button</h3>
+			<demo-snippet>
+				<template>
+					<d2l-alert type="default" button-text="Do it!" has-close-button>
+						A message.
+					</d2l-alert>
+				</template>
+			</demo-snippet>
+
+			<h3>With Subtext</h3>
+			<demo-snippet>
+				<template>
+					<d2l-alert type="default" button-text="Do it!" has-close-button subtext="I am subtext. I'm here to test the wrapping capabilities of adding subtext to these alerts, as well as other styling issues. Feel free to add to me!">
 						A message.
 					</d2l-alert>
 				</template>
@@ -74,6 +92,7 @@
 
 		</div>
 		<script>
+			document.body.classList.add('d2l-typography');
 			document.body.addEventListener('d2l-alert-button-pressed', function() {
 				alert('"d2l-alert-button-pressed" was dipatched.');
 			});

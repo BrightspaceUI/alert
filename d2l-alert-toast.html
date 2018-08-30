@@ -1,0 +1,176 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="./d2l-alert.html">
+<!--
+`d2l-alert-toast`
+Polymer-based web component for a D2L toast alert
+
+@demo demo/index.html
+-->
+
+<dom-module id="d2l-alert-toast">
+	<template strip-whitespace>
+		<style>
+			:host {
+				border-radius: 0.3rem;
+				bottom: 1rem;
+				box-shadow: 0 0.1rem 0.6rem 0 rgba(0,0,0,0.10);
+				left: 0;
+				margin: 0 auto;
+				max-width: 710px;
+				opacity: 0;
+				position: fixed;
+				right: 0;
+				transition-duration: 250ms;
+				transition-property: transform, opacity, visibility;
+				transition-timing-function: ease-in;
+				transform: translateY(0);
+				visibility: hidden;
+				width: 100%;
+				z-index: 10000; /*This was based on one of the flash messages in the LMS ... if need be, adjust to be more appropriate*/
+			}
+
+			:host(.closed) {
+				display:none;
+			}
+
+			:host(.opened) {
+				opacity: 1;
+				transform: translateY(-0.5rem);
+				visibility: visible;
+			}
+
+		</style>
+		<d2l-alert class="toast" type="[[type]]" button-text="[[buttonText]]" has-close-button="[[hasCloseButton]]" subtext="[[subtext]]">
+			<slot></slot>
+		</d2l-alert>
+	</template>
+	<script>
+		Polymer({
+			is: 'd2l-alert-toast',
+
+			/**
+			 * Fired when the custom action button is pressed.
+			 *
+			 * @event d2l-alert-button-pressed
+			*/
+
+			/**
+			 * Fired when the alert is closed/hidden.
+			 *
+			 * @event d2l-alert-closed
+			*/
+
+			listeners: {
+				'd2l-alert-closed': '_close',
+				'transitionend': '_setClosedClass'
+			},
+
+			properties: {
+
+				/**
+				 * Type of alert to display. Valid values are 'default', 'success', 'critical', and 'warning'.
+				 * Values "call-to-action" and "error" have been deprecated.
+				 *
+				 * NOTE: Toast alerts should not be used with 'critical' or 'warning' colors.
+				 */
+				type: {
+					type: String,
+					value: 'default',
+					reflectToAttribute: true
+				},
+				/**
+				 * Text for a custom action button. If provided, a button will be rendered with the specified text.
+				 */
+				buttonText: {
+					type: String,
+					value: null
+				},
+				/**
+				 * Whether to render a close button, allowing the user to hide the alert.
+				 */
+				hasCloseButton: {
+					type: Boolean,
+					value: true
+				},
+				/**
+				 * Additional text that will go underneath the heading
+				 */
+				subtext: {
+					type: String,
+					value: null
+				},
+				/**
+				 * Whether to open the toast alert (make visible) or not.
+				 */
+				open:{
+					type: Boolean,
+					value: false,
+					reflectToAttribute: true,
+					observer: '_changeOpen'
+				},
+				/**
+				 * Whether to automatically close after 2.5 seconds or stay open
+				 */
+				autoclose:{
+					type: Number,
+					value: 1,
+					observer: '_changeOpen'
+				}
+			},
+
+			ready: function() {
+				if (!this.open) {
+					this.classList.add('closed');
+				}
+			},
+
+			_changeOpen: function() {
+
+				if (this.open) {
+					requestAnimationFrame(function() {
+						if (this.classList.contains('closed')) {
+							this.classList.remove('closed');
+						}
+						requestAnimationFrame(function() {
+							if (!this.classList.contains('opened')) {
+								this.classList.add('opened');
+							}
+						}.bind(this));
+					}.bind(this));
+
+					if (this.autoclose === 1) {
+						//clear the setTimeout below that will close after 2.5 seconds if you closed the toast another way, and are re-opening (you'll want a fresh 2.5 seconds)
+						if (this._setTimeoutId > -1) {
+							clearTimeout(this._setTimeoutId);
+						}
+
+						this._setTimeoutId = setTimeout(function() {
+							this.classList.remove('opened');
+							this.open = false;
+							this._setTimeoutId = -1;
+						}.bind(this), 2500);
+					}
+				}
+			},
+
+			_close: function() {
+				this.classList.add('closed');
+				this.classList.remove('opened');
+				this.open = false;
+				//this removes the hidden attribute from the alert element, which is necessary for it to be visible again if we want to open it
+				var alertElement = this.$$('d2l-alert');
+				if (alertElement && alertElement.hasAttribute('hidden')) {
+					alertElement.removeAttribute('hidden');
+				}
+			},
+
+			//make sure that the transition has ended before setting the host class to closed, because it sets display:none and stops the transition from happening
+			//also, check for the event triggered by the end of visibility transition, as the transition will no longer be visible after this point, and so the class can be changed to closed
+			_setClosedClass: function(event) {
+				if (!this.open && event.propertyName === 'visibility') {
+					this.classList.add('closed');
+				}
+			}
+		});
+	</script>
+</dom-module>
