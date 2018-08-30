@@ -12,7 +12,7 @@ Polymer-based web component for a D2L toast alert
 		<style>
 			:host {
 				border-radius: 0.3rem;
-				bottom: 20px;
+				bottom: 1rem;
 				box-shadow: 0 0.1rem 0.6rem 0 rgba(0,0,0,0.10);
 				left: 0;
 				margin: 0 auto;
@@ -35,14 +35,13 @@ Polymer-based web component for a D2L toast alert
 
 			:host(.opened) {
 				opacity: 1;
-				transform: translateY(-10px);
+				transform: translateY(-0.5rem);
 				visibility: visible;
 			}
 
 		</style>
-		<d2l-alert type$="[[type]]" button-text$="[[buttonText]]" has-close-button$="[[hasCloseButton]]">
+		<d2l-alert class="toast" type="[[type]]" button-text="[[buttonText]]" has-close-button="[[hasCloseButton]]" subtext="[[subtext]]">
 			<slot></slot>
-			<slot name="subtext"></slot>
 		</d2l-alert>
 	</template>
 	<script>
@@ -106,43 +105,51 @@ Polymer-based web component for a D2L toast alert
 				 * Whether to automatically close after 2.5 seconds or stay open
 				 */
 				autoclose:{
-					type: Boolean,
-					value: true,
+					type: Number,
+					value: 1,
 					observer: '_changeOpen'
 				}
 			},
 
+			ready: function() {
+				if (!this.open) {
+					this.classList.add('closed');
+				}
+			},
+
 			_changeOpen: function() {
+
 				if (this.open) {
-					if (this.classList.contains('closed')) {
-						this.classList.remove('closed');
+					requestAnimationFrame(function() {
+						if (this.classList.contains('closed')) {
+							this.classList.remove('closed');
+						}
+						requestAnimationFrame(function() {
+							if (!this.classList.contains('opened')) {
+								this.classList.add('opened');
+							}
+						}.bind(this));
+					}.bind(this));
+
+					if (this.autoclose === 1) {
+						//clear the setTimeout below that will close after 2.5 seconds if you closed the toast another way, and are re-opening (you'll want a fresh 2.5 seconds)
+						if (this._setTimeoutId > -1) {
+							clearTimeout(this._setTimeoutId);
+						}
+
+						this._setTimeoutId = setTimeout(function() {
+							this.classList.remove('opened');
+							this.open = false;
+							this._setTimeoutId = -1;
+						}.bind(this), 2500);
 					}
-					//add in a delay before attempting the open transition, to allow for display:none to be disabled
-					setTimeout(function() {
-						if (!this.classList.contains('opened')) {
-							this.classList.add('opened');
-						}}.bind(this), 150);
-				}
-
-				//clear the setTimeout below that will close after 2.5 seconds if you closed the toast another way, and are re-opening (you'll want a fresh 2.5seconds)
-				if (this.open && this._setTimeoutId > -1) {
-					clearTimeout(this._setTimeoutId);
-					this._setTimeoutId = -1;
-				}
-
-				if (this.open && this.autoclose) {
-					this._setTimeoutId = setTimeout(function() {
-						this.open = false;
-						this.classList.remove('opened');
-						this._setTimeoutId = -1;
-					}.bind(this), 2500);
 				}
 			},
 
 			_close: function() {
-				this.open = false;
 				this.classList.add('closed');
 				this.classList.remove('opened');
+				this.open = false;
 				//this removes the hidden attribute from the alert element, which is necessary for it to be visible again if we want to open it
 				var alertElement = this.$$('d2l-alert');
 				if (alertElement && alertElement.hasAttribute('hidden')) {

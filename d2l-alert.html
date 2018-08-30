@@ -25,6 +25,11 @@ Polymer-based web component for a D2L alert
 				max-width: 710px;
 				width:100%;
 			}
+
+			:host(.toast) {
+				animation: none;
+			}
+
 			:host([hidden]) {
 				display: none;
 			}
@@ -42,10 +47,6 @@ Polymer-based web component for a D2L alert
 			}
 			:host(:dir(rtl)) .message-wrapper {
 				padding: 1rem 1.5rem 1rem 1.2rem;
-			}
-			.message-wrapper ::slotted([slot=subtext]) {
-				@apply --d2l-body-compact-text;
-				margin: 0.5rem 0 0;
 			}
 			.message-highlight {
 				border-radius: 0.3rem 0 0 0.3rem;
@@ -101,13 +102,18 @@ Polymer-based web component for a D2L alert
 				margin: 0.3rem;
 			}
 
+			#subtext {
+				@apply --d2l-body-compact-text;
+				margin: 0.5rem 0 0;
+			}
+
 		</style>
 
 		<div class="alert-wrapper">
 			<div class="message-highlight"></div>
 			<div class="message-wrapper">
 				<slot></slot>
-				<slot name="subtext"></slot>
+				<p id="subtext" hidden$="[[!subtext]]">[[subtext]]</p>
 			</div>
 			<d2l-button-subtle text="[[buttonText]]" on-tap="_dispatchButtonPressedEvent" hidden$="[[!_hasButton]]"></d2l-button-subtle>
 			<d2l-button-icon icon="d2l-tier1:close-default" text="[[localize('close')]]" on-tap="close" hidden$="[[!hasCloseButton]]"></d2l-button-icon>
@@ -161,7 +167,14 @@ Polymer-based web component for a D2L alert
 				hasCloseButton: {
 					type: Boolean,
 					value: false
-				}
+				},
+				/**
+				 * Additional text that will go underneath the heading
+				 */
+				 subtext: {
+					 type: String,
+					 value: null
+				 }
 			},
 
 			/**
