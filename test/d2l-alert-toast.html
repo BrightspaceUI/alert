@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+		<title>d2l-alert test</title>
+		<script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+		<script src="../../web-component-tester/browser.js"></script>
+		<link rel="import" href="../d2l-alert-toast.html">
+	</head>
+	<body>
+
+		<test-fixture id="d2l-alert-toast-fixture">
+			<template>
+				<d2l-alert-toast>Alert toast text</d2l-alert-toast>
+			</template>
+		</test-fixture>
+
+		<script>
+			describe('d2l-alert-toast', function() {
+
+				var component;
+
+				beforeEach(function() {
+					component = fixture('d2l-alert-toast-fixture');
+				});
+
+				it('should contain the demo text', function() {
+					expect(component.innerHTML).to.contain('Alert toast text');
+				});
+
+				it('should apply the default alert type by default', function() {
+					expect(component.attributes.getNamedItem('type').value).to.equal('default');
+				});
+
+				it('should apply the alert type property value as an attribute', function() {
+					component['type'] = 'success';
+					expect(component.attributes.getNamedItem('type').value).to.equal('success');
+				});
+
+			});
+		</script>
+	</body>
+</html>

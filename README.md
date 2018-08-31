@@ -95,7 +95,15 @@ alert.addEventListener('d2l-alert-button-pressed', function() {
 });
 ```
 
-### Toast alert
+Subtext can be added underneath the main message heading, if more detail is required.
+
+```html
+<d2l-alert type="default" subtext="I'm here to provide additional information about the default message.">
+  A default message.
+</d2l-alert>
+```
+
+### Toast Alert
 ```html
 <head>
   <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
@@ -103,6 +111,29 @@ alert.addEventListener('d2l-alert-button-pressed', function() {
 </head>
 ```
 
+The toast alert is an alert that pops up at the bottom of the screen, and stays open for 2.5 seconds before closing. It has the same functionality as the regular alert, using the same properties (e.g. type, subtext, hasCloseButton (see below), etc.). In addition it has an open property, that you need to set whenever you want it to open up:
+
+```html
+<d2l-alert-toast type="default" open>
+  A default message.
+</d2l-alert-toast>
+```
+
+It also has an autoclose property that defaults to on, which will trigger the toast to disappear after 2.5 seconds. To keep the toast on the screen indefinitely, turn off the autoclose property by setting it to 0:
+
+```html
+<d2l-alert-toast type="default" open autoclose="0">
+  A default message.
+</d2l-alert-toast>
+```
+
+Toast alerts default to having close buttons. As a result, if you don't want a close button, you'll need to set the hasCloseButton property to 0:
+
+```html
+<d2l-alert-toast type="default" open has-close-button="0">
+  A default message.
+</d2l-alert-toast>
+```
 
 ## Developing, Testing and Contributing
 

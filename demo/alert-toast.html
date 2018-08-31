@@ -35,6 +35,26 @@
 				</template>
 			</demo-snippet>
 
+			<h3>Default without autoclose</h3>
+			<demo-snippet>
+				<template>
+					<d2l-alert-toast id="toast2" autoclose="0">
+						A default toast alert without autoclose.
+					</d2l-alert-toast>
+					<d2l-button primary onclick="openToast('toast2')">Open alert</d2l-button>
+				</template>
+			</demo-snippet>
+
+			<h3>Default without close button</h3>
+			<demo-snippet>
+				<template>
+					<d2l-alert-toast id="toast3" has-close-button="0">
+						A default toast alert without autoclose.
+					</d2l-alert-toast>
+					<d2l-button primary onclick="openToast('toast3')">Open alert</d2l-button>
+				</template>
+			</demo-snippet>
+
 		</div>
 		<script>
 			document.body.classList.add('d2l-typography');

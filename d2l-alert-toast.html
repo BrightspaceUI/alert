@@ -40,7 +40,7 @@ Polymer-based web component for a D2L toast alert
 			}
 
 		</style>
-		<d2l-alert class="toast" type="[[type]]" button-text="[[buttonText]]" has-close-button="[[hasCloseButton]]" subtext="[[subtext]]">
+		<d2l-alert class="toast" type="[[type]]" button-text="[[buttonText]]" has-close-button="[[_checkHasCloseButton(hasCloseButton)]]" subtext="[[subtext]]">
 			<slot></slot>
 		</d2l-alert>
 	</template>
@@ -89,8 +89,8 @@ Polymer-based web component for a D2L toast alert
 				 * Whether to render a close button, allowing the user to hide the alert.
 				 */
 				hasCloseButton: {
-					type: Boolean,
-					value: true
+					type: Number,
+					value: 1
 				},
 				/**
 				 * Additional text that will go underneath the heading
@@ -151,6 +151,10 @@ Polymer-based web component for a D2L toast alert
 						}.bind(this), 2500);
 					}
 				}
+			},
+
+			_checkHasCloseButton: function(hasCloseValue) {
+				return hasCloseValue > 0;
 			},
 
 			_close: function() {
