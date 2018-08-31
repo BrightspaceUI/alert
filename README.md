@@ -19,6 +19,7 @@ bower install d2l-alert
 
 Include the [webcomponents.js](http://webcomponents.org/polyfills/) "lite" polyfill (for browsers who don't natively support web components), then import `d2l-alert.html`:
 
+### Alert
 ```html
 <head>
   <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
@@ -60,17 +61,17 @@ Include the [webcomponents.js](http://webcomponents.org/polyfills/) "lite" polyf
 </d2l-alert>
 ```
 
-A `<d2l-alert>` custom element can now be used in your application by specifying one of the following types: `call-to-action`, `success`, `error`, or `warning`.
+A `<d2l-alert>` custom element can now be used in your application by specifying one of the following types: `default`, `success`, `critical`, or `warning`.
 
 ```html
-<d2l-alert type="call-to-action">A call-to-action message.</d2l-alert>
+<d2l-alert type="default">A default message.</d2l-alert>
 ```
 
 A close button can optionally be rendered by specifying the `has-close-button` attribute.
 
 ```html
-<d2l-alert type="call-to-action" has-close-button>
-  A call-to-action message.
+<d2l-alert type="default" has-close-button>
+  A default message.
 </d2l-alert>
 ```
 
@@ -83,8 +84,8 @@ alert.addEventListener('d2l-alert-closed', function() {
 A custom action button can also be rendered if text is provided for the button.
 
 ```html
-<d2l-alert type="call-to-action" button-text="Do it!">
-  A call-to-action message.
+<d2l-alert type="default" button-text="Do it!">
+  A default message.
 </d2l-alert>
 ```
 
@@ -93,6 +94,15 @@ alert.addEventListener('d2l-alert-button-pressed', function() {
   console.log('alert custom action!');
 });
 ```
+
+### Toast alert
+```html
+<head>
+  <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../d2l-alert/d2l-alert-toast.html">
+</head>
+```
+
 
 ## Developing, Testing and Contributing
 
