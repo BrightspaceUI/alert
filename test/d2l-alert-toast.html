@@ -30,12 +30,12 @@
 				});
 
 				it('should apply the default alert type by default', function() {
-					expect(component.attributes.getNamedItem('type').value).to.equal('default');
+					expect(component.type).to.equal('default');
 				});
 
 				it('should apply the alert type property value as an attribute', function() {
-					component['type'] = 'success';
-					expect(component.attributes.getNamedItem('type').value).to.equal('success');
+					component.type = 'success';
+					expect(component.getAttribute('type')).to.equal('success');
 				});
 
 			});

@@ -17,12 +17,19 @@ bower install d2l-alert
 
 ## Usage
 
-Include the [webcomponents.js](http://webcomponents.org/polyfills/) "lite" polyfill (for browsers who don't natively support web components), then import `d2l-alert.html`:
+Include the [webcomponents.js](http://webcomponents.org/polyfills/) "lite" polyfill (for browsers who don't natively support web components):
+
+```html
+<head>
+  <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+</head>
+```
+
+Then import the components below that you want to use.
 
 ### Alert
 ```html
 <head>
-  <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
   <link rel="import" href="../d2l-alert/d2l-alert.html">
 </head>
 ```
@@ -106,12 +113,11 @@ Subtext can be added underneath the main message heading, if more detail is requ
 ### Toast Alert
 ```html
 <head>
-  <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
   <link rel="import" href="../d2l-alert/d2l-alert-toast.html">
 </head>
 ```
 
-The toast alert is an alert that pops up at the bottom of the screen, and stays open for 2.5 seconds before closing. It has the same functionality as the regular alert, using the same properties (e.g. type, subtext, hasCloseButton (see below), etc.). In addition it has an open property, that you need to set whenever you want it to open up:
+The toast alert is an alert that pops up at the bottom of the screen, and stays open for 2.5 seconds before closing. It has the same functionality as the regular alert, using most of the same attributes (e.g. type, subtext, etc.). In addition it has an `open` attribute, that you need to set whenever you want it to open:
 
 ```html
 <d2l-alert-toast type="default" open>
@@ -119,7 +125,7 @@ The toast alert is an alert that pops up at the bottom of the screen, and stays 
 </d2l-alert-toast>
 ```
 
-It also has an autoclose property that defaults to on, which will trigger the toast to disappear after 2.5 seconds. To keep the toast on the screen indefinitely, turn off the autoclose property by setting it to 0:
+It also has an `autoclose` attribute that defaults to on, which will trigger the toast to disappear after 2.5 seconds. To keep the toast on the screen indefinitely, turn off the `autoclose` attribute by setting it to 0:
 
 ```html
 <d2l-alert-toast type="default" open autoclose="0">
@@ -127,10 +133,10 @@ It also has an autoclose property that defaults to on, which will trigger the to
 </d2l-alert-toast>
 ```
 
-Toast alerts default to having close buttons. As a result, if you don't want a close button, you'll need to set the hasCloseButton property to 0:
+Toast alerts default to having close buttons. As a result, if you don't want a close button, you'll need to set the `hide-close-button` attribute:
 
 ```html
-<d2l-alert-toast type="default" open has-close-button="0">
+<d2l-alert-toast type="default" open hide-close-button>
   A default message.
 </d2l-alert-toast>
 ```
