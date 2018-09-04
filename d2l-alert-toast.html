@@ -40,7 +40,7 @@ Polymer-based web component for a D2L toast alert
 			}
 
 		</style>
-		<d2l-alert class="toast" type="[[type]]" button-text="[[buttonText]]" has-close-button="[[hasCloseButton]]" subtext="[[subtext]]">
+		<d2l-alert class="toast" type="[[type]]" button-text="[[buttonText]]" has-close-button="[[!hideCloseButton]]" subtext="[[subtext]]">
 			<slot></slot>
 		</d2l-alert>
 	</template>
@@ -88,9 +88,9 @@ Polymer-based web component for a D2L toast alert
 				/**
 				 * Whether to render a close button, allowing the user to hide the alert.
 				 */
-				hasCloseButton: {
+				hideCloseButton: {
 					type: Boolean,
-					value: true
+					value: false
 				},
 				/**
 				 * Additional text that will go underneath the heading

@@ -17,11 +17,19 @@ bower install d2l-alert
 
 ## Usage
 
-Include the [webcomponents.js](http://webcomponents.org/polyfills/) "lite" polyfill (for browsers who don't natively support web components), then import `d2l-alert.html`:
+Include the [webcomponents.js](http://webcomponents.org/polyfills/) "lite" polyfill (for browsers who don't natively support web components):
 
 ```html
 <head>
   <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+</head>
+```
+
+Then import the components below that you want to use.
+
+### Alert
+```html
+<head>
   <link rel="import" href="../d2l-alert/d2l-alert.html">
 </head>
 ```
@@ -60,17 +68,17 @@ Include the [webcomponents.js](http://webcomponents.org/polyfills/) "lite" polyf
 </d2l-alert>
 ```
 
-A `<d2l-alert>` custom element can now be used in your application by specifying one of the following types: `call-to-action`, `success`, `error`, or `warning`.
+A `<d2l-alert>` custom element can now be used in your application by specifying one of the following types: `default`, `success`, `critical`, or `warning`.
 
 ```html
-<d2l-alert type="call-to-action">A call-to-action message.</d2l-alert>
+<d2l-alert type="default">A default message.</d2l-alert>
 ```
 
 A close button can optionally be rendered by specifying the `has-close-button` attribute.
 
 ```html
-<d2l-alert type="call-to-action" has-close-button>
-  A call-to-action message.
+<d2l-alert type="default" has-close-button>
+  A default message.
 </d2l-alert>
 ```
 
@@ -83,8 +91,8 @@ alert.addEventListener('d2l-alert-closed', function() {
 A custom action button can also be rendered if text is provided for the button.
 
 ```html
-<d2l-alert type="call-to-action" button-text="Do it!">
-  A call-to-action message.
+<d2l-alert type="default" button-text="Do it!">
+  A default message.
 </d2l-alert>
 ```
 
@@ -92,6 +100,45 @@ A custom action button can also be rendered if text is provided for the button.
 alert.addEventListener('d2l-alert-button-pressed', function() {
   console.log('alert custom action!');
 });
+```
+
+Subtext can be added underneath the main message heading, if more detail is required.
+
+```html
+<d2l-alert type="default" subtext="I'm here to provide additional information about the default message.">
+  A default message.
+</d2l-alert>
+```
+
+### Toast Alert
+```html
+<head>
+  <link rel="import" href="../d2l-alert/d2l-alert-toast.html">
+</head>
+```
+
+The toast alert is an alert that pops up at the bottom of the screen, and stays open for 2.5 seconds before closing. It has the same functionality as the regular alert, using most of the same attributes (e.g. type, subtext, etc.). In addition it has an `open` attribute, that you need to set whenever you want it to open:
+
+```html
+<d2l-alert-toast type="default" open>
+  A default message.
+</d2l-alert-toast>
+```
+
+It also has an `autoclose` attribute that defaults to on, which will trigger the toast to disappear after 2.5 seconds. To keep the toast on the screen indefinitely, turn off the `autoclose` attribute by setting it to 0:
+
+```html
+<d2l-alert-toast type="default" open autoclose="0">
+  A default message.
+</d2l-alert-toast>
+```
+
+Toast alerts default to having close buttons. As a result, if you don't want a close button, you'll need to set the `hide-close-button` attribute:
+
+```html
+<d2l-alert-toast type="default" open hide-close-button>
+  A default message.
+</d2l-alert-toast>
 ```
 
 ## Developing, Testing and Contributing

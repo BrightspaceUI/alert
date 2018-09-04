@@ -6,27 +6,27 @@
 		<title>d2l-alert test</title>
 		<script src="../../webcomponentsjs/webcomponents-lite.js"></script>
 		<script src="../../web-component-tester/browser.js"></script>
-		<link rel="import" href="../d2l-alert.html">
+		<link rel="import" href="../d2l-alert-toast.html">
 	</head>
 	<body>
 
-		<test-fixture id="d2l-alert-fixture">
+		<test-fixture id="d2l-alert-toast-fixture">
 			<template>
-				<d2l-alert>Alert text</d2l-alert>
+				<d2l-alert-toast>Alert toast text</d2l-alert-toast>
 			</template>
 		</test-fixture>
 
 		<script>
-			describe('d2l-alert', function() {
+			describe('d2l-alert-toast', function() {
 
 				var component;
 
 				beforeEach(function() {
-					component = fixture('d2l-alert-fixture');
+					component = fixture('d2l-alert-toast-fixture');
 				});
 
 				it('should contain the demo text', function() {
-					expect(component.innerHTML).to.contain('Alert text');
+					expect(component.innerHTML).to.contain('Alert toast text');
 				});
 
 				it('should apply the default alert type by default', function() {
