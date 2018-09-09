@@ -150,6 +150,11 @@ Polymer-based web component for a D2L toast alert
 							this._setTimeoutId = -1;
 						}.bind(this), 2500);
 					}
+				} else {
+					if (this.classList.contains('opened')) {
+						this.classList.add('closed');
+						this.classList.remove('opened');
+					}
 				}
 			},
 
