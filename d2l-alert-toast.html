@@ -134,6 +134,7 @@ Polymer-based web component for a D2L toast alert
 						requestAnimationFrame(function() {
 							if (!this.classList.contains('opened')) {
 								this.classList.add('opened');
+								this.setAttribute('role','alert');
 							}
 						}.bind(this));
 					}.bind(this));
@@ -154,6 +155,7 @@ Polymer-based web component for a D2L toast alert
 					if (this.classList.contains('opened')) {
 						this.classList.add('closed');
 						this.classList.remove('opened');
+						this.removeAttribute('role');
 					}
 				}
 			},
@@ -161,6 +163,7 @@ Polymer-based web component for a D2L toast alert
 			_close: function() {
 				this.classList.add('closed');
 				this.classList.remove('opened');
+				this.removeAttribute('role');
 				this.open = false;
 				//this removes the hidden attribute from the alert element, which is necessary for it to be visible again if we want to open it
 				var alertElement = this.$$('d2l-alert');
@@ -174,6 +177,7 @@ Polymer-based web component for a D2L toast alert
 			_setClosedClass: function(event) {
 				if (!this.open && event.propertyName === 'visibility') {
 					this.classList.add('closed');
+					this.removeAttribute('role');
 				}
 			}
 		});
