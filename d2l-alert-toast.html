@@ -10,11 +10,16 @@ Polymer-based web component for a D2L toast alert
 <dom-module id="d2l-alert-toast">
 	<template strip-whitespace>
 		<style>
+
+			:host {
+				display: block;
+			}
+
 			:host .d2l-alert-toast-container {
 				display: none;
 			}
 
-			:host([open]) .d2l-alert-toast-container{
+			:host([open]) .d2l-alert-toast-container {
 				border-radius: 0.3rem;
 				bottom: 1rem;
 				box-shadow: 0 0.1rem 0.6rem 0 rgba(0,0,0,0.10);
@@ -34,7 +39,7 @@ Polymer-based web component for a D2L toast alert
 				z-index: 10000; /*This was based on one of the flash messages in the LMS ... if need be, adjust to be more appropriate*/
 			}
 
-			:host([open]) .d2l-alert-toast-container.opened {
+			:host([open]) .d2l-alert-toast-container.d2l-alert-toast-container-opened {
 				opacity: 1;
 				transform: translateY(-0.5rem);
 				visibility: visible;
@@ -128,7 +133,7 @@ Polymer-based web component for a D2L toast alert
 				if (this.open) {
 					requestAnimationFrame(function() {
 						requestAnimationFrame(function() {
-							this._toastContainer.classList.add('opened');
+							this._toastContainer.classList.add('d2l-alert-toast-container-opened');
 							this._toastContainer.setAttribute('role', 'alert');
 						}.bind(this));
 					}.bind(this));
@@ -140,12 +145,12 @@ Polymer-based web component for a D2L toast alert
 						}
 
 						this._setTimeoutId = setTimeout(function() {
-							this._toastContainer.classList.remove('opened');
+							this._toastContainer.classList.remove('d2l-alert-toast-container-opened');
 							this._setTimeoutId = -1;
 						}.bind(this), 2500);
 					}
 				} else {
-					this._toastContainer.classList.remove('opened');
+					this._toastContainer.classList.remove('d2l-alert-toast-container-opened');
 					this._toastContainer.removeAttribute('role');
 				}
 			},
@@ -162,7 +167,7 @@ Polymer-based web component for a D2L toast alert
 			//make sure that the transition has ended before setting open property to false, because it sets display:none and stops the transition from happening
 			//also, check for the event triggered by the end of visibility transition, as the toast will no longer be visible after this point
 			_setClosedClass: function(event) {
-				if (!this._toastContainer.classList.contains('opened') && event.propertyName === 'visibility') {
+				if (!this._toastContainer.classList.contains('d2l-alert-toast-container-opened') && event.propertyName === 'visibility') {
 					this.open = false;
 				}
 			}
