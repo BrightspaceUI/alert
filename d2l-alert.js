@@ -1,19 +1,27 @@
-<link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../d2l-button/d2l-button-icon.html">
-<link rel="import" href="../d2l-button/d2l-button-subtle.html">
-<link rel="import" href="../d2l-colors/d2l-colors.html">
-<link rel="import" href="../d2l-typography/d2l-typography-shared-styles.html">
-<link rel="import" href="localize-behavior.html">
-<link rel="import" href="d2l-alert-shared-styles.html">
-<!--
+/**
 `d2l-alert`
 Polymer-based web component for a D2L alert
 
 @demo demo/index.html
--->
+*/
+/*
+  FIXME(polymer-modulizer): the above comments were extracted
+  from HTML and may be out of place here. Review them and
+  then delete this comment!
+*/
+import '../@polymer/polymer/polymer-legacy.js';
 
-<dom-module id="d2l-alert">
-	<template strip-whitespace>
+import '../d2l-button/d2l-button-icon.js';
+import '../d2l-button/d2l-button-subtle.js';
+import '../d2l-colors/d2l-colors.js';
+import '../d2l-typography/d2l-typography-shared-styles.js';
+import './localize-behavior.js';
+import './d2l-alert-shared-styles.js';
+import { Polymer } from '../@polymer/polymer/lib/legacy/polymer-fn.js';
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<dom-module id="d2l-alert">
+	<template strip-whitespace="">
 		<style>
 			:host {
 				animation: 600ms ease drop-in;
@@ -119,84 +127,85 @@ Polymer-based web component for a D2L alert
 			<d2l-button-icon icon="d2l-tier1:close-default" text="[[localize('close')]]" on-tap="close" hidden$="[[!hasCloseButton]]"></d2l-button-icon>
 		</div>
 	</template>
-	<script>
-		Polymer({
-			is: 'd2l-alert',
+	
+</dom-module>`;
 
-			behaviors: [
-				D2L.PolymerBehaviors.Alert.LocalizeBehavior
-			],
+document.head.appendChild($_documentContainer.content);
+Polymer({
+	is: 'd2l-alert',
 
-			/**
-			 * Fired when the custom action button is pressed.
-			 *
-			 * @event d2l-alert-button-pressed
-			*/
+	behaviors: [
+		D2L.PolymerBehaviors.Alert.LocalizeBehavior
+	],
 
-			/**
-			 * Fired when the alert is closed/hidden.
-			 *
-			 * @event d2l-alert-closed
-			*/
+	/**
+	 * Fired when the custom action button is pressed.
+	 *
+	 * @event d2l-alert-button-pressed
+	*/
 
-			properties: {
+	/**
+	 * Fired when the alert is closed/hidden.
+	 *
+	 * @event d2l-alert-closed
+	*/
 
-				/**
-				 * Type of alert to display. Valid values are 'default', 'success', 'critical', and 'warning'.
-				 * Values "call-to-action" and "error" have been deprecated.
-				 */
-				type: {
-					type: String,
-					value: 'default',
-					reflectToAttribute: true
-				},
-				_hasButton: {
-					type: Boolean,
-					computed: '_computeHasButton(buttonText)'
-				},
-				/**
-				 * Text for a custom action button. If provided, a button will be rendered with the specified text.
-				 */
-				buttonText: {
-					type: String,
-					value: null
-				},
-				/**
-				 * Whether to render a close button, allowing the user to hide the alert.
-				 */
-				hasCloseButton: {
-					type: Boolean,
-					value: false
-				},
-				/**
-				 * Additional text that will go underneath the heading
-				 */
-				subtext: {
-					type: String,
-					value: null
-				}
-			},
+	properties: {
 
-			/**
-			 * Closes/hides the alert.
-			 */
-			close: function() {
-				this.setAttribute('hidden', 'hidden');
-				this._dispatchClosedEvent();
-			},
+		/**
+		 * Type of alert to display. Valid values are 'default', 'success', 'critical', and 'warning'.
+		 * Values "call-to-action" and "error" have been deprecated.
+		 */
+		type: {
+			type: String,
+			value: 'default',
+			reflectToAttribute: true
+		},
+		_hasButton: {
+			type: Boolean,
+			computed: '_computeHasButton(buttonText)'
+		},
+		/**
+		 * Text for a custom action button. If provided, a button will be rendered with the specified text.
+		 */
+		buttonText: {
+			type: String,
+			value: null
+		},
+		/**
+		 * Whether to render a close button, allowing the user to hide the alert.
+		 */
+		hasCloseButton: {
+			type: Boolean,
+			value: false
+		},
+		/**
+		 * Additional text that will go underneath the heading
+		 */
+		subtext: {
+			type: String,
+			value: null
+		}
+	},
 
-			_computeHasButton: function(buttonText) {
-				return (buttonText && buttonText.length > 0);
-			},
+	/**
+	 * Closes/hides the alert.
+	 */
+	close: function() {
+		this.setAttribute('hidden', 'hidden');
+		this._dispatchClosedEvent();
+	},
 
-			_dispatchButtonPressedEvent: function() {
-				this.fire('d2l-alert-button-pressed');
-			},
+	_computeHasButton: function(buttonText) {
+		return (buttonText && buttonText.length > 0);
+	},
 
-			_dispatchClosedEvent: function() {
-				this.fire('d2l-alert-closed');
-			}
+	_dispatchButtonPressedEvent: function() {
+		this.fire('d2l-alert-button-pressed');
+	},
 
-		});
-	</script>
-</dom-module>
+	_dispatchClosedEvent: function() {
+		this.fire('d2l-alert-closed');
+	}
+
+});
