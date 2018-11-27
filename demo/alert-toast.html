@@ -87,13 +87,8 @@ $_documentContainer.innerHTML = `<div class="vertical-section-container centered
 		</div>`;
 
 document.body.appendChild($_documentContainer.content);
-</script>t>
-		<script type="module">
-import '../../@polymer/iron-demo-helpers/demo-pages-shared-styles.js';
-import '../../@polymer/iron-demo-helpers/demo-snippet.js';
-import '../../d2l-typography/d2l-typography.js';
-import '../../d2l-button/d2l-button.js';
-import '../d2l-alert-toast.js';
+</script>
+		<script>
 document.body.classList.add('d2l-typography');
 document.body.addEventListener('d2l-alert-button-pressed', function() {
 	alert('"d2l-alert-button-pressed" was dipatched.');
@@ -101,4 +96,6 @@ document.body.addEventListener('d2l-alert-button-pressed', function() {
 function openToast(toastId) { //eslint-disable-line no-unused-vars
 	document.getElementById(toastId).setAttribute('open', '');
 }
-</script>ml>
+</script>
+</body>
+</html>
