@@ -9,15 +9,15 @@ Polymer-based web component for a D2L alert
   from HTML and may be out of place here. Review them and
   then delete this comment!
 */
-import '../@polymer/polymer/polymer-legacy.js';
+import '@polymer/polymer/polymer-legacy.js';
 
-import '../d2l-button/d2l-button-icon.js';
-import '../d2l-button/d2l-button-subtle.js';
-import '../d2l-colors/d2l-colors.js';
-import '../d2l-typography/d2l-typography-shared-styles.js';
+import 'd2l-button/d2l-button-icon.js';
+import 'd2l-button/d2l-button-subtle.js';
+import 'd2l-colors/d2l-colors.js';
+import 'd2l-typography/d2l-typography-shared-styles.js';
 import './localize-behavior.js';
 import './d2l-alert-shared-styles.js';
-import { Polymer } from '../@polymer/polymer/lib/legacy/polymer-fn.js';
+import { Polymer } from '@polymer/polymer/lib/legacy/polymer-fn.js';
 const $_documentContainer = document.createElement('template');
 
 $_documentContainer.innerHTML = `<dom-module id="d2l-alert">
