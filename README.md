@@ -177,8 +177,8 @@ npm test
 
 [bower-url]: http://bower.io/search/?q=d2l-alert
 [bower-image]: https://badge.fury.io/bo/d2l-alert.svg
-[ci-url]: https://travis-ci.org/BrightspaceUI/alert
-[ci-image]: https://travis-ci.org/BrightspaceUI/alert.svg?branch=master
+[ci-url]: https://travis-ci.com/BrightspaceUI/alert
+[ci-image]: https://travis-ci.com/BrightspaceUI/alert.svg?branch=master
 
 ## Versioning & Releasing
 
