@@ -7,10 +7,10 @@ For further information on this and other components, refer to [The Brightspace 
 
 ## Installation
 
-`d2l-alert` can be installed from through npm:
+`d2l-alert` can be installed from through npm by referencing it in your package.json from Github:
 
 ```shell
-npm install BrightspaceUI/alert
+"d2l-alert": "BrightspaceUI/alert#semver:^4"
 ```
 
 ## Usage
@@ -28,7 +28,7 @@ Then import the components below that you want to use.
 ### Alert
 ```html
 <head>
-  <link rel="import" href="../d2l-alert/d2l-alert.js">
+  import 'd2l-aler/d2l-alert.js';
 </head>
 ```
 
@@ -111,7 +111,7 @@ Subtext can be added underneath the main message heading, if more detail is requ
 ### Toast Alert
 ```html
 <head>
-  <link rel="import" href="../d2l-alert/d2l-alert-toast.js">
+  import 'd2l-alert/d2l-alert-toast.js';
 </head>
 ```
 
