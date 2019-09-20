@@ -28,7 +28,9 @@ Then import the components below that you want to use.
 ### Alert
 ```html
 <head>
-  import 'd2l-aler/d2l-alert.js';
+  <script type="module">
+	  import 'd2l-alert/d2l-alert.js';
+  </script>
 </head>
 ```
 
