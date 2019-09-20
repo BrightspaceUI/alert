@@ -113,7 +113,9 @@ Subtext can be added underneath the main message heading, if more detail is requ
 ### Toast Alert
 ```html
 <head>
-  import 'd2l-alert/d2l-alert-toast.js';
+  <script type="module">
+    import 'd2l-alert/d2l-alert-toast.js';
+  </script>
 </head>
 ```
 
