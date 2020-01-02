@@ -1,6 +1,4 @@
 # d2l-alert
-[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/BrightspaceUI/alert)
-[![Bower version][bower-image]][bower-url]
 [![Build status][ci-image]][ci-url]
 
 [Polymer](https://www.polymer-project.org)-based web component for D2L alerts.
@@ -9,10 +7,10 @@ For further information on this and other components, refer to [The Brightspace 
 
 ## Installation
 
-`d2l-alert` can be installed from [Bower][bower-url]:
+`d2l-alert` can be installed from through npm by referencing it in your package.json from Github:
 
 ```shell
-bower install d2l-alert
+"d2l-alert": "BrightspaceUI/alert#semver:^4"
 ```
 
 ## Usage
@@ -30,7 +28,9 @@ Then import the components below that you want to use.
 ### Alert
 ```html
 <head>
-  <link rel="import" href="../d2l-alert/d2l-alert.html">
+  <script type="module">
+	  import 'd2l-alert/d2l-alert.js';
+  </script>
 </head>
 ```
 
@@ -113,7 +113,9 @@ Subtext can be added underneath the main message heading, if more detail is requ
 ### Toast Alert
 ```html
 <head>
-  <link rel="import" href="../d2l-alert/d2l-alert-toast.html">
+  <script type="module">
+    import 'd2l-alert/d2l-alert-toast.js';
+  </script>
 </head>
 ```
 
@@ -151,19 +153,19 @@ If you don't have it already, install the [Polymer CLI](https://www.polymer-proj
 npm install -g polymer-cli
 ```
 
-To start a [local web server](https://www.polymer-project.org/2.0/docs/tools/polymer-cli-commands#serve) that hosts the demo page and tests:
+To start a [local web server](https://www.polymer-project.org/3.0/docs/tools/polymer-cli-commands#serve) that hosts the demo page and tests:
 
 ```shell
 polymer serve
 ```
 
-To lint ([eslint](http://eslint.org/) and [Polymer lint](https://www.polymer-project.org/2.0/docs/tools/polymer-cli-commands#lint)):
+To lint ([eslint](http://eslint.org/) and [Polymer lint](https://www.polymer-project.org/3.0/docs/tools/polymer-cli-commands#lint)):
 
 ```shell
 npm run lint
 ```
 
-To run unit tests locally using [Polymer test](https://www.polymer-project.org/2.0/docs/tools/polymer-cli-commands#tests):
+To run unit tests locally using [Polymer test](https://www.polymer-project.org/3.0/docs/tools/polymer-cli-commands#tests):
 
 ```shell
 npm run test:polymer:local
@@ -175,8 +177,6 @@ To lint AND run local unit tests:
 npm test
 ```
 
-[bower-url]: http://bower.io/search/?q=d2l-alert
-[bower-image]: https://badge.fury.io/bo/d2l-alert.svg
 [ci-url]: https://travis-ci.com/BrightspaceUI/alert
 [ci-image]: https://travis-ci.com/BrightspaceUI/alert.svg?branch=master
 
