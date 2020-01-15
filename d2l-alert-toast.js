@@ -140,8 +140,7 @@ Polymer({
 		 */
 		announceText: {
 			type: String,
-			value: null,
-			reflectToAttribute: true
+			value: null
 		}
 	},
 
