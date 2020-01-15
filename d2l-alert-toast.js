@@ -13,6 +13,7 @@ import '@polymer/polymer/polymer-legacy.js';
 
 import './d2l-alert.js';
 import { Polymer } from '@polymer/polymer/lib/legacy/polymer-fn.js';
+import { announce } from '@brightspace-ui/core/helpers/announce.js';
 const $_documentContainer = document.createElement('template');
 
 $_documentContainer.innerHTML = `<dom-module id="d2l-alert-toast">
@@ -133,6 +134,12 @@ Polymer({
 			type: Number,
 			value: 1,
 			observer: '_changeOpen'
+		},
+		/**
+		 * Text that will be read by a screen reader when the toast is displayed
+		 */
+		announceText: {
+			type: String
 		}
 	},
 
@@ -145,7 +152,12 @@ Polymer({
 			requestAnimationFrame(function() {
 				requestAnimationFrame(function() {
 					this._toastContainer.classList.add('d2l-alert-toast-container-opened');
-					this._toastContainer.setAttribute('role', 'alert');
+
+					if (this.announceText) {
+						announce(this.announceText);
+					} else {
+						this._toastContainer.setAttribute('role', 'alert');
+					}
 
 					if (this.autoclose === 1) {
 						//clear the setTimeout below that will close after 2.5 seconds if you closed the toast another way, and are re-opening (you'll want a fresh 2.5 seconds)
@@ -163,7 +175,10 @@ Polymer({
 
 		} else {
 			this._toastContainer.classList.remove('d2l-alert-toast-container-opened');
-			this._toastContainer.removeAttribute('role');
+
+			if (!this.announceText) {
+				this._toastContainer.removeAttribute('role');
+			}
 		}
 	},
 
