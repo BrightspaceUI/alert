@@ -139,8 +139,7 @@ Polymer({
 		 * Text that will be read by a screen reader when the toast is displayed
 		 */
 		announceText: {
-			type: String,
-			value: null
+			type: String
 		}
 	},
 
