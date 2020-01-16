@@ -143,6 +143,14 @@ Toast alerts default to having close buttons. As a result, if you don't want a c
 </d2l-alert-toast>
 ```
 
+To support the ability for screen readers to read out toast messages, toast alerts have the `announce-text` attribute:
+
+```html
+<d2l-alert-toast type="default" open announce-text="Here is a toast">
+  Here is a toast
+</d2l-alert-toast>
+```
+
 ## Developing, Testing and Contributing
 
 After cloning the repo, run `npm install` to install dependencies.
