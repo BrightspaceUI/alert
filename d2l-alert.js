@@ -34,6 +34,10 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-alert">
 				width:100%;
 			}
 
+			:host([full-width]) {
+				max-width: unset;
+			}
+
 			:host(.toast) {
 				animation: none;
 			}
@@ -127,7 +131,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-alert">
 			<d2l-button-icon icon="d2l-tier1:close-default" text="[[localize('close')]]" on-tap="close" hidden$="[[!hasCloseButton]]"></d2l-button-icon>
 		</div>
 	</template>
-	
+
 </dom-module>`;
 
 document.head.appendChild($_documentContainer.content);
@@ -185,6 +189,13 @@ Polymer({
 		subtext: {
 			type: String,
 			value: null
+		},
+		/**
+		 * Whether to allow the alert to use the full width available, or stay restricted at 710px max-width
+		 */
+		fullWidth: {
+			type: Boolean,
+			value: false
 		}
 	},
 

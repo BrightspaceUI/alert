@@ -110,6 +110,14 @@ Subtext can be added underneath the main message heading, if more detail is requ
 </d2l-alert>
 ```
 
+By default the max-width of the alert is 710px, but this can be overridden with the `full-width` attribute.
+
+```html
+<d2l-alert type="default" full-width>
+  A default message that will use all available horizontal space.
+</d2l-alert>
+```
+
 ### Toast Alert
 ```html
 <head>

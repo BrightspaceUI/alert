@@ -42,6 +42,11 @@ $_documentContainer.innerHTML = `<style>
 			html {
 				font-size: 20px;
 			}
+
+			#wide {
+				width: 150%;
+				margin-left: -25%;
+			}
 		</style>`;
 
 document.body.appendChild($_documentContainer.content);
@@ -80,6 +85,13 @@ $_documentContainer.innerHTML = `<div class="vertical-section-container centered
 			<demo-snippet>
 				<template>
 					<d2l-alert type="warning">A warning message.</d2l-alert>
+				</template>
+			</demo-snippet>
+
+			<h3>Full width</h3>
+			<demo-snippet id="wide">
+				<template>
+					<d2l-alert type="success" full-width>A full-width success message.</d2l-alert>
 				</template>
 			</demo-snippet>
 
