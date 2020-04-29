@@ -11,8 +11,8 @@ Polymer-based web component for a D2L alert
 */
 import '@polymer/polymer/polymer-legacy.js';
 
-import 'd2l-button/d2l-button-icon.js';
-import 'd2l-button/d2l-button-subtle.js';
+import '@brightspace-ui/core/components/button/button-icon.js';
+import '@brightspace-ui/core/components/button/button-subtle.js';
 import 'd2l-colors/d2l-colors.js';
 import 'd2l-typography/d2l-typography-shared-styles.js';
 import './localize-behavior.js';
