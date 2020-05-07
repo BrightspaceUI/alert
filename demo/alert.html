@@ -3,135 +3,74 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
-		<title>d2l-alert demo</title>
 		<script src="../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
-		<script type="module" src="../../@polymer/iron-demo-helpers/demo-pages-shared-styles.js"></script>
-		<script type="module" src="../../@polymer/iron-demo-helpers/demo-snippet.js"></script>
-		<script type="module" src="../../d2l-typography/d2l-typography.js"></script>
-		<script type="module" src="../d2l-alert.js"></script>
-		<!-- FIXME(polymer-modulizer):
-		These imperative modules that innerHTML your HTML are
-		a hacky way to be sure that any mixins in included style
-		modules are ready before any elements that reference them are
-		instantiated, otherwise the CSS @apply mixin polyfill won't be
-		able to expand the underlying CSS custom properties.
-		See: https://github.com/Polymer/polymer-modulizer/issues/154
-		-->
-	<script type="module">
-const $_documentContainer = document.createElement('template');
-
-$_documentContainer.innerHTML = `<custom-style>
-			<style is="custom-style" include="demo-pages-shared-styles"></style>
-		</custom-style>`;
-
-document.body.appendChild($_documentContainer.content);
-</script>
 		<script type="module">
-const $_documentContainer = document.createElement('template');
-
-$_documentContainer.innerHTML = `<custom-style include="d2l-typography">
-			<style is="custom-style" include="d2l-typography"></style>
-		</custom-style>`;
-
-document.body.appendChild($_documentContainer.content);
-</script>
-		<script type="module">
-const $_documentContainer = document.createElement('template');
-
-$_documentContainer.innerHTML = `<style>
-			html {
-				font-size: 20px;
-			}
-		</style>`;
-
-document.body.appendChild($_documentContainer.content);
-</script>
+			import '@brightspace-ui/core/components/demo/demo-page.js';
+			import '@brightspace-ui/core/components/demo/demo-snippet.js';
+			import '../d2l-alert.js';
+		</script>
+		<style>
+		</style>
 	</head>
-	<body unresolved class="d2l-typography">
-		<script type="module">
-const $_documentContainer = document.createElement('template');
 
-$_documentContainer.innerHTML = `<div class="vertical-section-container centered">
+	<body unresolved>
 
-			<h3>Default</h3>
-			<demo-snippet>
+		<d2l-demo-page page-title="d2l-alert (imported from core)">
+
+			<h2>Default</h2>
+			<d2l-demo-snippet>
 				<template>
-					<d2l-alert type="default">
-						A default message.
-					</d2l-alert>
+					<d2l-alert type="default">A default message.</d2l-alert>
 				</template>
-			</demo-snippet>
+			</d2l-demo-snippet>
 
-			<h3>Success</h3>
-			<demo-snippet>
+			<h2>Success</h2>
+			<d2l-demo-snippet>
 				<template>
 					<d2l-alert type="success">A success message.</d2l-alert>
 				</template>
-			</demo-snippet>
+			</d2l-demo-snippet>
 
-			<h3>Critical</h3>
-			<demo-snippet>
+			<h2>Critical</h2>
+			<d2l-demo-snippet>
 				<template>
 					<d2l-alert type="critical">A critical message.</d2l-alert>
 				</template>
-			</demo-snippet>
+			</d2l-demo-snippet>
 
-			<h3>Warning</h3>
-			<demo-snippet>
+			<h2>Warning</h2>
+			<d2l-demo-snippet>
 				<template>
 					<d2l-alert type="warning">A warning message.</d2l-alert>
 				</template>
-			</demo-snippet>
+			</d2l-demo-snippet>
 
-			<h3>With Close Button</h3>
-			<demo-snippet>
+			<h2>With Close Button</h2>
+			<d2l-demo-snippet>
 				<template>
-					<d2l-alert type="default" has-close-button="">
+					<d2l-alert type="default" has-close-button>A message.</d2l-alert>
+				</template>
+			</d2l-demo-snippet>
+
+			<h2>With Action Button</h2>
+			<d2l-demo-snippet>
+				<template>
+					<d2l-alert type="default" button-text="Do it!" has-close-button>A message.</d2l-alert>
+				</template>
+			</d2l-demo-snippet>
+
+			<h2>With Subtext</h2>
+			<d2l-demo-snippet>
+				<template>
+					<d2l-alert type="default" button-text="Do it!" has-close-button
+						subtext="I am subtext. I'm here to test the wrapping capabilities of adding subtext to these alerts, as well as other styling issues. Feel free to add to me!">
 						A message.
 					</d2l-alert>
 				</template>
-			</demo-snippet>
+			</d2l-demo-snippet>
 
-			<h3>With Action Button</h3>
-			<demo-snippet>
-				<template>
-					<d2l-alert type="default" button-text="Do it!">
-						A message.
-					</d2l-alert>
-				</template>
-			</demo-snippet>
+		</d2l-demo-page>
 
-			<h3>With Close and Action Button</h3>
-			<demo-snippet>
-				<template>
-					<d2l-alert type="default" button-text="Do it!" has-close-button="">
-						A message.
-					</d2l-alert>
-				</template>
-			</demo-snippet>
-
-			<h3>With Subtext</h3>
-			<demo-snippet>
-				<template>
-					<d2l-alert type="default" button-text="Do it!" has-close-button="" subtext="I am subtext. I'm here to test the wrapping capabilities of adding subtext to these alerts, as well as other styling issues. Feel free to add to me!">
-						A message.
-					</d2l-alert>
-				</template>
-			</demo-snippet>
-
-		</div>`;
-
-document.body.appendChild($_documentContainer.content);
-</script>
-		<script type="module">
-import '@polymer/iron-demo-helpers/demo-pages-shared-styles.js';
-import '@polymer/iron-demo-helpers/demo-snippet.js';
-import 'd2l-typography/d2l-typography.js';
-import '../d2l-alert.js';
-document.body.classList.add('d2l-typography');
-document.body.addEventListener('d2l-alert-button-pressed', function() {
-	alert('"d2l-alert-button-pressed" was dipatched.');
-});
-</script>
 	</body>
+
 </html>
