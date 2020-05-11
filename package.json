@@ -21,7 +21,7 @@
     "frau-ci": "^1.33.2",
     "polymer-cli": "^1.9.1"
   },
-  "version": "4.14.1",
+  "version": "4.14.2",
   "resolutions": {
     "inherits": "2.0.3",
     "samsam": "1.1.3",
